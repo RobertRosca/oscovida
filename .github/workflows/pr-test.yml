@@ -47,7 +47,8 @@ jobs:
 
       - name: Set up oscovida and webgen
         run: |
-          cd ocsovida
+          cd oscovida
+          ls -la
           pip install poetry
           poetry --version
           poetry config virtualenvs.create true
