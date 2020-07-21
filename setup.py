@@ -32,33 +32,23 @@ setup(name="oscovida",
       long_description_content_type='text/markdown',
       license="BSD-3-Clause",
       packages=find_packages(),
-      install_requires=[
-          'joblib',
-          'pandas',
-          'seaborn',
-          'matplotlib<3.3',
-          'markdown',
-          'numpy',
-          'scipy',
-          'voila',
-          'pelican',
-          'pelican-jupyter',
-          'tabulate',
-          'tqdm',
-          'ipywidgets',
-          'ipynb_py_convert',
-          'click',
-      ],
-      extras_require={
-          'test': [
-              'pytest',
-              'pytest-cov',
-              'coverage',
-              'nbval',
-              'testpath',
-              'pycodestyle',
-          ]
-      },
+    install_requires=[
+        'click==7.*,>=7.1.2', 'ipynb-py-convert==0.*,>=0.4.5',
+        'ipywidgets==7.*,>=7.5.1', 'joblib==0.*,>=0.16.0',
+        'markdown==3.*,>=3.2.2', 'matplotlib<3.3', 'numpy==1.*,>=1.19.0',
+        'pandas==1.*,>=1.0.5', 'pelican==4.*,>=4.2.0',
+        'pelican-jupyter==0.*,>=0.10.0', 'scipy==1.*,>=1.5.1',
+        'seaborn==0.*,>=0.10.1', 'tabulate==0.*,>=0.8.7', 'tqdm==4.*,>=4.48.0',
+        'voila==0.*,>=0.1.21'
+    ],
+    extras_require={
+        "test": [
+            "black==19.*,>=19.10.0.b0", "coverage==5.*,>=5.2.0",
+            "mypy==0.*,>=0.782.0", "nbval==0.*,>=0.9.5",
+            "pycodestyle==2.*,>=2.6.0", "pytest==5.*,>=5.4.3",
+            "pytest-cov==2.*,>=2.10.0", "testpath==0.*,>=0.4.4"
+        ]
+    },
       python_requires='>=3.6',
       classifiers=[
           'Intended Audience :: Developers',
