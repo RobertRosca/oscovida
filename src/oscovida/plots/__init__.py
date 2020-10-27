@@ -439,7 +439,7 @@ def _plotly_subplot_insert(main_figure, subplot, row, col):
 
 
 def _plot_summary_plotly(
-    region: Region, label_prepend: Optional[str] = None, shared_xaxes=False
+    region: Region, label_prepend: Optional[str] = None, shared_xaxes=True
 ):
     from plotly.subplots import make_subplots
 
