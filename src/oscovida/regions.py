@@ -1,15 +1,21 @@
 import datetime
 import os
+import warnings
 from collections import namedtuple
 from typing import List, Optional
 
 import pandas as pd
 import pycountry
 from pandas import DataFrame
+from pandas.errors import DtypeWarning
 
 from . import covid19dh
 
 # TODO: Use world bank data (world-bank-data pypi)
+
+#  covid19dh data may have mixed types, ignore these warnings here as that is
+#  expected behaviour
+warnings.simplefilter(action='ignore', category=DtypeWarning)
 
 
 class Region:
