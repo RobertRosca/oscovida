@@ -1,0 +1,1605 @@
+
+
+
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="TODO">
+      
+      
+        <link rel="canonical" href="https://oscovida.github.io/oscovida/api/plotting/">
+      
+      
+      <link rel="shortcut icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-5.5.14">
+    
+    
+      
+        <title>Plotting - Oscovida Documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.d3202873.min.css">
+      
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ff0a5ce4.min.css">
+      
+      
+    
+    
+    
+      
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono",SFMono-Regular,Consolas,Menlo,monospace}</style>
+      
+    
+    
+    
+      <link rel="stylesheet" href="../../css/mkdocstrings.css">
+    
+      <link rel="stylesheet" href="../../css/ansi-colours.css">
+    
+      <link rel="stylesheet" href="../../css/jupyter-cells.css">
+    
+      <link rel="stylesheet" href="../../css/pandas-dataframe.css">
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="preference" data-md-color-primary="" data-md-color-accent="">
+  
+    
+      <script>matchMedia("(prefers-color-scheme: dark)").matches&&document.body.setAttribute("data-md-color-scheme","slate")</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#oscovida.plots" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid" aria-label="Header">
+    <a href="https://oscovida.github.io/oscovida" title="Oscovida Documentation" class="md-header-nav__button md-logo" aria-label="Oscovida Documentation">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header-nav__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header-nav__title" data-md-component="header-title">
+      
+        <div class="md-header-nav__ellipsis">
+          <span class="md-header-nav__topic md-ellipsis">
+            Oscovida Documentation
+          </span>
+          <span class="md-header-nav__topic md-ellipsis">
+            
+              Plotting
+            
+          </span>
+        </div>
+      
+    </div>
+    
+      <label class="md-header-nav__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active">
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" data-md-component="search-reset" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header-nav__source">
+        
+<a href="https://github.com/oscovida/oscovida" title="Go to repository" class="md-source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    oscovida/oscovida
+  </div>
+</a>
+      </div>
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+        
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="https://oscovida.github.io/oscovida" title="Oscovida Documentation" class="md-nav__button md-logo" aria-label="Oscovida Documentation">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    Oscovida Documentation
+  </label>
+  
+    <div class="md-nav__source">
+      
+<a href="https://github.com/oscovida/oscovida" title="Go to repository" class="md-source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    oscovida/oscovida
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../quick-start/" title="Quick-Start" class="md-nav__link">
+      Quick-Start
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2">
+    
+    <label class="md-nav__link" for="nav-2">
+      Examples
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Examples" data-md-level="1">
+      <label class="md-nav__title" for="nav-2">
+        <span class="md-nav__icon md-icon"></span>
+        Examples
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../examples/germany/" title="Germany" class="md-nav__link">
+      Germany
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3" checked>
+    
+    <label class="md-nav__link" for="nav-3">
+      API Reference
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="API Reference" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        <span class="md-nav__icon md-icon"></span>
+        API Reference
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../regions/" title="Regions" class="md-nav__link">
+      Regions
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../statistics/" title="Statistics" class="md-nav__link">
+      Statistics
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Plotting
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+    
+    <a href="./" title="Plotting" class="md-nav__link md-nav__link--active">
+      Plotting
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#oscovida.plots" class="md-nav__link">
+    oscovida.plots
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#oscovida.plots.plot_daily" class="md-nav__link">
+    plot_daily()
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#oscovida.plots.plot_doubling_time" class="md-nav__link">
+    plot_doubling_time()
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#oscovida.plots.plot_growth_factor" class="md-nav__link">
+    plot_growth_factor()
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#oscovida.plots.plot_r_number" class="md-nav__link">
+    plot_r_number()
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#oscovida.plots.plot_summary" class="md-nav__link">
+    plot_summary()
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#oscovida.plots.plot_totals" class="md-nav__link">
+    plot_totals()
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../contributing/" title="Contributing" class="md-nav__link">
+      Contributing
+    </a>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#oscovida.plots" class="md-nav__link">
+    oscovida.plots
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#oscovida.plots.plot_daily" class="md-nav__link">
+    plot_daily()
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#oscovida.plots.plot_doubling_time" class="md-nav__link">
+    plot_doubling_time()
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#oscovida.plots.plot_growth_factor" class="md-nav__link">
+    plot_growth_factor()
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#oscovida.plots.plot_r_number" class="md-nav__link">
+    plot_r_number()
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#oscovida.plots.plot_summary" class="md-nav__link">
+    plot_summary()
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#oscovida.plots.plot_totals" class="md-nav__link">
+    plot_totals()
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                  
+                
+                
+                  <h1>Plotting</h1>
+                
+                <div class="doc doc-object doc-module">
+<h2 class="hidden-toc" href="#oscovida.plots" id="oscovida.plots" style="visibility: hidden; position: absolute;">
+        </h2>
+<div class="doc doc-contents first">
+<p>Module containing some generic plotting functions for use with Oscovida, the
+plots largely parallel the statistics functions, the following plots can be
+created:</p>
+<ul>
+<li><code>plot_totals</code>: Plots the total numbers for an oscovida <code>Region</code>, by default
+  plots only the <code>confirmed</code> and <code>deaths</code> columns.</li>
+<li><code>plot_daily</code>: Plots the daily numbers for an oscovida <code>Region</code>, by default
+  plots only the <code>confirmed</code> and <code>deaths</code> columns.</li>
+<li><code>plot_r_number</code>: Plots the daily r number for an oscovida <code>Region</code>, by default
+  plots only the <code>confirmed</code> and <code>deaths</code> columns.</li>
+<li><code>plot_growth_factor</code>: Plots the daily growth factor for for an oscovida
+  <code>Region</code>, by default plots only the <code>confirmed</code> and <code>deaths</code> columns.</li>
+<li><code>plot_doubling_time</code>: Plots the doubling time for an oscovida <code>Region</code>, by
+  default plots only the <code>confirmed</code> and <code>deaths</code> columns.</li>
+<li><code>plot_summary</code>: Creates a summary plot for the <code>Region</code>, contains all plots.</li>
+</ul>
+<div class="doc doc-children">
+<div class="doc doc-object doc-function">
+<h2 class="doc doc-heading" id="oscovida.plots.plot_daily">
+
+        <code class="highlight language-python">
+plot_daily<span class="p">(</span><span class="n">region</span><span class="p">,</span> <span class="n">plot_object</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">colnames</span><span class="o">=</span><span class="p">[</span><span class="s1">'confirmed'</span><span class="p">,</span> <span class="s1">'deaths'</span><span class="p">],</span> <span class="n">label_prepend</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">smoothing</span><span class="o">=</span><span class="s1">'weak'</span><span class="p">)</span>        </code>
+
+
+      </h2>
+<div class="doc doc-contents ">
+<p>Plots the daily numbers for an oscovida <code>Region</code>, by default plots only
+the <code>confirmed</code> and <code>deaths</code> columns.</p>
+<p>Works out the daily numbers for a given input series assuming it is a
+cumulative sum of either <code>cases</code>, <code>deaths</code>, or <code>recoveries</code>. Plots a line
+with the smoothed daily numbers, and uses the raw numbers for a bar chart.</p>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>region</code></td>
+<td><code>Region</code></td>
+<td>
+<p>Region
+An oscovida <code>Region</code> object to be plotted</p>
+</td>
+<td><em>required</em></td>
+</tr>
+<tr>
+<td><code>colnames</code></td>
+<td><code>Sequence[str]</code></td>
+<td>
+<p>Sequence[str], optional
+List or tuple of column names to be plotted
+By default ["confirmed", "deaths"]</p>
+</td>
+<td><code>['confirmed', 'deaths']</code></td>
+</tr>
+<tr>
+<td><code>plot_object</code></td>
+<td><code>Optional[matplotlib.axes._axes.Axes]</code></td>
+<td>
+<p>Optional[Axes], optional
+Axes to plot onto, if <code>None</code> then defaults to <code>plt.gca()</code>. If the plotly
+backend is being used, this can be a <code>plotly.graph_objects.Figure</code> instead
+By default <code>None</code></p>
+</td>
+<td><code>None</code></td>
+</tr>
+<tr>
+<td><code>label_prepend</code></td>
+<td><code>Optional[str]</code></td>
+<td>
+<p>Optional[str], optional
+String to prepend to the label, e.g. "GB" would make the labels "GB cases"
+and "GB deaths", instead of just generic "cases" and "deaths". This is
+automatically added when using a Region as an argument, must be manually
+added when passing a series
+By default <code>""</code></p>
+</td>
+<td><code>None</code></td>
+</tr>
+<tr>
+<td><code>smoothing</code></td>
+<td><code>str</code></td>
+<td>
+<p>str, optional
+Smoothing argument to use, see <code>oscovida.statistics.smooth</code> and
+<code>oscovida.statistics.SMOOTHING_METHODS</code> for more info
+By default 'weak'</p>
+</td>
+<td><code>'weak'</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Axes</code></td>
+<td>
+<p>Axes
+    Axes with plotted lines</p>
+</td>
+</tr>
+</tbody>
+</table>
+<details class="quote">
+          <summary>Source code in <code>oscovida/plots/__init__.py</code></summary>
+          <div class="highlight">
+<pre><span></span><code><span class="k">def</span> <span class="nf">plot_daily</span><span class="p">(</span>
+    <span class="n">region</span><span class="p">:</span> <span class="n">Region</span><span class="p">,</span>
+    <span class="n">plot_object</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Axes</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">colnames</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"confirmed"</span><span class="p">,</span> <span class="s2">"deaths"</span><span class="p">],</span>
+    <span class="n">label_prepend</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">smoothing</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">'weak'</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Axes</span><span class="p">:</span>
+    <span class="sd">"""</span>
+<span class="sd">    Plots the daily numbers for an oscovida `Region`, by default plots only</span>
+<span class="sd">    the `confirmed` and `deaths` columns.</span>
+
+<span class="sd">    Works out the daily numbers for a given input series assuming it is a</span>
+<span class="sd">    cumulative sum of either `cases`, `deaths`, or `recoveries`. Plots a line</span>
+<span class="sd">    with the smoothed daily numbers, and uses the raw numbers for a bar chart.</span>
+
+<span class="sd">    Parameters:</span>
+<span class="sd">        region : Region</span>
+<span class="sd">            An oscovida `Region` object to be plotted</span>
+<span class="sd">        colnames : Sequence[str], optional</span>
+<span class="sd">            List or tuple of column names to be plotted</span>
+<span class="sd">            By default ["confirmed", "deaths"]</span>
+<span class="sd">        plot_object : Optional[Axes], optional</span>
+<span class="sd">            Axes to plot onto, if `None` then defaults to `plt.gca()`. If the plotly</span>
+<span class="sd">            backend is being used, this can be a `plotly.graph_objects.Figure` instead</span>
+<span class="sd">            By default `None`</span>
+<span class="sd">        label_prepend : Optional[str], optional</span>
+<span class="sd">            String to prepend to the label, e.g. "GB" would make the labels "GB cases"</span>
+<span class="sd">            and "GB deaths", instead of just generic "cases" and "deaths". This is</span>
+<span class="sd">            automatically added when using a Region as an argument, must be manually</span>
+<span class="sd">            added when passing a series</span>
+<span class="sd">            By default `""`</span>
+<span class="sd">        smoothing : str, optional</span>
+<span class="sd">            Smoothing argument to use, see `oscovida.statistics.smooth` and</span>
+<span class="sd">            `oscovida.statistics.SMOOTHING_METHODS` for more info</span>
+<span class="sd">            By default 'weak'</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        Axes</span>
+<span class="sd">            Axes with plotted lines</span>
+<span class="sd">    """</span>
+    <span class="k">if</span> <span class="n">label_prepend</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">label_prepend</span> <span class="o">=</span> <span class="n">region</span><span class="o">.</span><span class="n">admin_1</span>
+
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">colnames</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+        <span class="n">colnames</span> <span class="o">=</span> <span class="p">[</span><span class="n">colnames</span><span class="p">]</span>
+
+    <span class="k">for</span> <span class="n">colname</span> <span class="ow">in</span> <span class="n">colnames</span><span class="p">:</span>
+        <span class="n">plot_object</span> <span class="o">=</span> <span class="n">get_backend</span><span class="p">()</span><span class="o">.</span><span class="n">plot_daily</span><span class="p">(</span>
+            <span class="n">region</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">colname</span><span class="p">],</span>
+            <span class="n">plot_object</span><span class="p">,</span>
+            <span class="n">label_prepend</span><span class="o">=</span><span class="n">label_prepend</span><span class="p">,</span>
+            <span class="n">smoothing</span><span class="o">=</span><span class="n">smoothing</span><span class="p">,</span>
+        <span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">plot_object</span>
+</code></pre>
+</div>
+</details>
+</div>
+</div>
+<div class="doc doc-object doc-function">
+<h2 class="doc doc-heading" id="oscovida.plots.plot_doubling_time">
+
+        <code class="highlight language-python">
+plot_doubling_time<span class="p">(</span><span class="n">region</span><span class="p">,</span> <span class="n">plot_object</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">colnames</span><span class="o">=</span><span class="p">[</span><span class="s1">'confirmed'</span><span class="p">,</span> <span class="s1">'deaths'</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">label_prepend</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">smoothing</span><span class="o">=</span><span class="s1">'strong'</span><span class="p">,</span> <span class="n">yaxis_auto_lim</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">logscale</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>        </code>
+
+
+      </h2>
+<div class="doc doc-contents ">
+<p>Plots the doubling time for an oscovida <code>Region</code>, by default plots only
+the <code>confirmed</code> and <code>deaths</code> columns.</p>
+<p>Works out the doubling time and plots it as a scatter plot, then smooths the
+doubling times and plots a rolling average as a line.</p>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>region</code></td>
+<td><code>Region</code></td>
+<td>
+<p>Region
+An oscovida <code>Region</code> object to be plotted</p>
+</td>
+<td><em>required</em></td>
+</tr>
+<tr>
+<td><code>colnames</code></td>
+<td><code>Sequence[str]</code></td>
+<td>
+<p>Sequence[str], optional
+List or tuple of column names to be plotted
+By default ["confirmed", "deaths"]</p>
+</td>
+<td><code>['confirmed', 'deaths']</code></td>
+</tr>
+<tr>
+<td><code>plot_object</code></td>
+<td><code>Optional[matplotlib.axes._axes.Axes]</code></td>
+<td>
+<p>Optional[Axes], optional
+Axes to plot onto, if <code>None</code> then defaults to <code>plt.gca()</code>. If the plotly
+backend is being used, this can be a <code>plotly.graph_objects.Figure</code> instead
+By default <code>None</code></p>
+</td>
+<td><code>None</code></td>
+</tr>
+<tr>
+<td><code>color</code></td>
+<td><code>Optional[str]</code></td>
+<td>
+<p>Optional[str], optional
+Color for the plot line, if <code>None</code> then the color is based on the series
+name, e.g. blue for cases, red for deaths
+By default <code>None</code></p>
+</td>
+<td><code>None</code></td>
+</tr>
+<tr>
+<td><code>label_prepend</code></td>
+<td><code>Optional[str]</code></td>
+<td>
+<p>[type], optional
+String to prepend to the label, e.g. "GB" would make the labels "GB cases"
+and "GB deaths", instead of just generic "cases" and "deaths". This is
+automatically added when using a Region as an argument, must be manually
+added when passing a series
+By default <code>""</code></p>
+</td>
+<td><code>None</code></td>
+</tr>
+<tr>
+<td><code>smoothing</code></td>
+<td><code>str</code></td>
+<td>
+<p>str, optional
+Smoothing argument to use, see <code>oscovida.statistics.smooth</code> and
+<code>oscovida.statistics.SMOOTHING_METHODS</code> for more info
+By default 'strong'</p>
+</td>
+<td><code>'strong'</code></td>
+</tr>
+<tr>
+<td><code>yaxis_auto_lim</code></td>
+<td><code>bool</code></td>
+<td>
+<p>bool, optional
+Uses <code>oscovida.statistics.min_max</code> to work out the minimum and maximum
+r number for the past 28 days, limits the y-axis to that range
+By default True</p>
+</td>
+<td><code>True</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Axes</code></td>
+<td>
+<p>Axes
+    Axes with plotted lines</p>
+</td>
+</tr>
+</tbody>
+</table>
+<details class="quote">
+          <summary>Source code in <code>oscovida/plots/__init__.py</code></summary>
+          <div class="highlight">
+<pre><span></span><code><span class="k">def</span> <span class="nf">plot_doubling_time</span><span class="p">(</span>
+    <span class="n">region</span><span class="p">:</span> <span class="n">Region</span><span class="p">,</span>
+    <span class="n">plot_object</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Axes</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">colnames</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"confirmed"</span><span class="p">,</span> <span class="s2">"deaths"</span><span class="p">],</span>
+    <span class="n">color</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">label_prepend</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">smoothing</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">'strong'</span><span class="p">,</span>
+    <span class="n">yaxis_auto_lim</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="n">logscale</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Axes</span><span class="p">:</span>
+    <span class="sd">"""</span>
+<span class="sd">    Plots the doubling time for an oscovida `Region`, by default plots only</span>
+<span class="sd">    the `confirmed` and `deaths` columns.</span>
+
+<span class="sd">    Works out the doubling time and plots it as a scatter plot, then smooths the</span>
+<span class="sd">    doubling times and plots a rolling average as a line.</span>
+
+<span class="sd">    Parameters:</span>
+<span class="sd">        region : Region</span>
+<span class="sd">            An oscovida `Region` object to be plotted</span>
+<span class="sd">        colnames : Sequence[str], optional</span>
+<span class="sd">            List or tuple of column names to be plotted</span>
+<span class="sd">            By default ["confirmed", "deaths"]</span>
+<span class="sd">        plot_object : Optional[Axes], optional</span>
+<span class="sd">            Axes to plot onto, if `None` then defaults to `plt.gca()`. If the plotly</span>
+<span class="sd">            backend is being used, this can be a `plotly.graph_objects.Figure` instead</span>
+<span class="sd">            By default `None`</span>
+<span class="sd">        color : Optional[str], optional</span>
+<span class="sd">            Color for the plot line, if `None` then the color is based on the series</span>
+<span class="sd">            name, e.g. blue for cases, red for deaths</span>
+<span class="sd">            By default `None`</span>
+<span class="sd">        label_prepend : [type], optional</span>
+<span class="sd">            String to prepend to the label, e.g. "GB" would make the labels "GB cases"</span>
+<span class="sd">            and "GB deaths", instead of just generic "cases" and "deaths". This is</span>
+<span class="sd">            automatically added when using a Region as an argument, must be manually</span>
+<span class="sd">            added when passing a series</span>
+<span class="sd">            By default `""`</span>
+<span class="sd">        smoothing : str, optional</span>
+<span class="sd">            Smoothing argument to use, see `oscovida.statistics.smooth` and</span>
+<span class="sd">            `oscovida.statistics.SMOOTHING_METHODS` for more info</span>
+<span class="sd">            By default 'strong'</span>
+<span class="sd">        yaxis_auto_lim : bool, optional</span>
+<span class="sd">            Uses `oscovida.statistics.min_max` to work out the minimum and maximum</span>
+<span class="sd">            r number for the past 28 days, limits the y-axis to that range</span>
+<span class="sd">            By default True</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        Axes</span>
+<span class="sd">            Axes with plotted lines</span>
+<span class="sd">    """</span>
+    <span class="k">if</span> <span class="n">label_prepend</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">label_prepend</span> <span class="o">=</span> <span class="n">region</span><span class="o">.</span><span class="n">admin_1</span>
+
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">colnames</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+        <span class="n">colnames</span> <span class="o">=</span> <span class="p">[</span><span class="n">colnames</span><span class="p">]</span>
+
+    <span class="k">for</span> <span class="n">colname</span> <span class="ow">in</span> <span class="n">colnames</span><span class="p">:</span>
+        <span class="n">plot_object</span> <span class="o">=</span> <span class="n">get_backend</span><span class="p">()</span><span class="o">.</span><span class="n">plot_doubling_time</span><span class="p">(</span>
+            <span class="n">region</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">colname</span><span class="p">],</span>
+            <span class="n">plot_object</span><span class="p">,</span>
+            <span class="n">color</span><span class="o">=</span><span class="n">color</span><span class="p">,</span>
+            <span class="n">label_prepend</span><span class="o">=</span><span class="n">label_prepend</span><span class="p">,</span>
+            <span class="n">smoothing</span><span class="o">=</span><span class="n">smoothing</span><span class="p">,</span>
+            <span class="n">yaxis_auto_lim</span><span class="o">=</span><span class="n">yaxis_auto_lim</span><span class="p">,</span>
+            <span class="n">logscale</span><span class="o">=</span><span class="n">logscale</span><span class="p">,</span>
+        <span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">plot_object</span>
+</code></pre>
+</div>
+</details>
+</div>
+</div>
+<div class="doc doc-object doc-function">
+<h2 class="doc doc-heading" id="oscovida.plots.plot_growth_factor">
+
+        <code class="highlight language-python">
+plot_growth_factor<span class="p">(</span><span class="n">region</span><span class="p">,</span> <span class="n">plot_object</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">colnames</span><span class="o">=</span><span class="p">[</span><span class="s1">'confirmed'</span><span class="p">,</span> <span class="s1">'deaths'</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">label_prepend</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">smoothing</span><span class="o">=</span><span class="s1">'7dayrolling'</span><span class="p">,</span> <span class="n">yaxis_auto_lim</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>        </code>
+
+
+      </h2>
+<div class="doc doc-contents ">
+<p>Plots the daily growth factor for for an oscovida <code>Region</code>, by default
+plots only the <code>confirmed</code> and <code>deaths</code> columns.</p>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>region</code></td>
+<td><code>Region</code></td>
+<td>
+<p>Region
+An oscovida <code>Region</code> object to be plotted</p>
+</td>
+<td><em>required</em></td>
+</tr>
+<tr>
+<td><code>colnames</code></td>
+<td><code>Sequence[str]</code></td>
+<td>
+<p>Sequence[str], optional
+List or tuple of column names to be plotted
+By default ["confirmed", "deaths"]</p>
+</td>
+<td><code>['confirmed', 'deaths']</code></td>
+</tr>
+<tr>
+<td><code>plot_object</code></td>
+<td><code>Optional[matplotlib.axes._axes.Axes]</code></td>
+<td>
+<p>Optional[Axes], optional
+Axes to plot onto, if <code>None</code> then defaults to <code>plt.gca()</code>. If the plotly
+backend is being used, this can be a <code>plotly.graph_objects.Figure</code> instead
+By default <code>None</code></p>
+</td>
+<td><code>None</code></td>
+</tr>
+<tr>
+<td><code>color</code></td>
+<td><code>Optional[str]</code></td>
+<td>
+<p>Optional[str], optional
+Color for the plot line, if <code>None</code> then the color is based on the series
+name, e.g. blue for cases, red for deaths
+By default <code>None</code></p>
+</td>
+<td><code>None</code></td>
+</tr>
+<tr>
+<td><code>label_prepend</code></td>
+<td><code>Optional[str]</code></td>
+<td>
+<p>[type], optional
+String to prepend to the label, e.g. "GB" would make the labels "GB cases"
+and "GB deaths", instead of just generic "cases" and "deaths". This is
+automatically added when using a Region as an argument, must be manually
+added when passing a series
+By default <code>""</code></p>
+</td>
+<td><code>None</code></td>
+</tr>
+<tr>
+<td><code>smoothing</code></td>
+<td><code>str</code></td>
+<td>
+<p>str, optional
+Smoothing argument to use, see <code>oscovida.statistics.smooth</code> and
+<code>oscovida.statistics.SMOOTHING_METHODS</code> for more info
+By default '7dayrolling'</p>
+</td>
+<td><code>'7dayrolling'</code></td>
+</tr>
+<tr>
+<td><code>yaxis_auto_lim</code></td>
+<td><code>bool</code></td>
+<td>
+<p>bool, optional
+Uses <code>oscovida.statistics.min_max</code> to work out the minimum and maximum
+r number for the past 28 days, limits the y-axis to that range
+By default True</p>
+</td>
+<td><code>True</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Axes</code></td>
+<td>
+<p>Axes
+    [description]</p>
+</td>
+</tr>
+</tbody>
+</table>
+<details class="quote">
+          <summary>Source code in <code>oscovida/plots/__init__.py</code></summary>
+          <div class="highlight">
+<pre><span></span><code><span class="k">def</span> <span class="nf">plot_growth_factor</span><span class="p">(</span>
+    <span class="n">region</span><span class="p">:</span> <span class="n">Region</span><span class="p">,</span>
+    <span class="n">plot_object</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Axes</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">colnames</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"confirmed"</span><span class="p">,</span> <span class="s2">"deaths"</span><span class="p">],</span>
+    <span class="n">color</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">label_prepend</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">smoothing</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">'7dayrolling'</span><span class="p">,</span>
+    <span class="n">yaxis_auto_lim</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Axes</span><span class="p">:</span>
+    <span class="sd">"""</span>
+<span class="sd">    Plots the daily growth factor for for an oscovida `Region`, by default</span>
+<span class="sd">    plots only the `confirmed` and `deaths` columns.</span>
+
+<span class="sd">    Parameters:</span>
+<span class="sd">        region : Region</span>
+<span class="sd">            An oscovida `Region` object to be plotted</span>
+<span class="sd">        colnames : Sequence[str], optional</span>
+<span class="sd">            List or tuple of column names to be plotted</span>
+<span class="sd">            By default ["confirmed", "deaths"]</span>
+<span class="sd">        plot_object : Optional[Axes], optional</span>
+<span class="sd">            Axes to plot onto, if `None` then defaults to `plt.gca()`. If the plotly</span>
+<span class="sd">            backend is being used, this can be a `plotly.graph_objects.Figure` instead</span>
+<span class="sd">            By default `None`</span>
+<span class="sd">        color : Optional[str], optional</span>
+<span class="sd">            Color for the plot line, if `None` then the color is based on the series</span>
+<span class="sd">            name, e.g. blue for cases, red for deaths</span>
+<span class="sd">            By default `None`</span>
+<span class="sd">        label_prepend : [type], optional</span>
+<span class="sd">            String to prepend to the label, e.g. "GB" would make the labels "GB cases"</span>
+<span class="sd">            and "GB deaths", instead of just generic "cases" and "deaths". This is</span>
+<span class="sd">            automatically added when using a Region as an argument, must be manually</span>
+<span class="sd">            added when passing a series</span>
+<span class="sd">            By default `""`</span>
+<span class="sd">        smoothing : str, optional</span>
+<span class="sd">            Smoothing argument to use, see `oscovida.statistics.smooth` and</span>
+<span class="sd">            `oscovida.statistics.SMOOTHING_METHODS` for more info</span>
+<span class="sd">            By default '7dayrolling'</span>
+<span class="sd">        yaxis_auto_lim : bool, optional</span>
+<span class="sd">            Uses `oscovida.statistics.min_max` to work out the minimum and maximum</span>
+<span class="sd">            r number for the past 28 days, limits the y-axis to that range</span>
+<span class="sd">            By default True</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        Axes</span>
+<span class="sd">            [description]</span>
+<span class="sd">    """</span>
+    <span class="k">if</span> <span class="n">label_prepend</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">label_prepend</span> <span class="o">=</span> <span class="n">region</span><span class="o">.</span><span class="n">admin_1</span>
+
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">colnames</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+        <span class="n">colnames</span> <span class="o">=</span> <span class="p">[</span><span class="n">colnames</span><span class="p">]</span>
+
+    <span class="k">for</span> <span class="n">colname</span> <span class="ow">in</span> <span class="n">colnames</span><span class="p">:</span>
+        <span class="n">plot_object</span> <span class="o">=</span> <span class="n">get_backend</span><span class="p">()</span><span class="o">.</span><span class="n">plot_growth_factor</span><span class="p">(</span>
+            <span class="n">region</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">colname</span><span class="p">],</span>
+            <span class="n">plot_object</span><span class="p">,</span>
+            <span class="n">color</span><span class="o">=</span><span class="n">color</span><span class="p">,</span>
+            <span class="n">label_prepend</span><span class="o">=</span><span class="n">label_prepend</span><span class="p">,</span>
+            <span class="n">smoothing</span><span class="o">=</span><span class="n">smoothing</span><span class="p">,</span>
+            <span class="n">yaxis_auto_lim</span><span class="o">=</span><span class="n">yaxis_auto_lim</span><span class="p">,</span>
+        <span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">plot_object</span>
+</code></pre>
+</div>
+</details>
+</div>
+</div>
+<div class="doc doc-object doc-function">
+<h2 class="doc doc-heading" id="oscovida.plots.plot_r_number">
+
+        <code class="highlight language-python">
+plot_r_number<span class="p">(</span><span class="n">region</span><span class="p">,</span> <span class="n">plot_object</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">colnames</span><span class="o">=</span><span class="p">[</span><span class="s1">'confirmed'</span><span class="p">,</span> <span class="s1">'deaths'</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">label_prepend</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">smoothing</span><span class="o">=</span><span class="s1">'7dayrolling'</span><span class="p">,</span> <span class="n">yaxis_auto_lim</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>        </code>
+
+
+      </h2>
+<div class="doc doc-contents ">
+<p>Plots the daily r number for an oscovida <code>Region</code>, by default plots only
+the <code>confirmed</code> and <code>deaths</code> columns.</p>
+<p>Works out the daily numbers, applies smoothing, then computes the r number.</p>
+<p>This is then plotted along with a horizontal black line at a y axis value of 1.</p>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>region</code></td>
+<td><code>Region</code></td>
+<td>
+<p>Region
+An oscovida <code>Region</code> object to be plotted</p>
+</td>
+<td><em>required</em></td>
+</tr>
+<tr>
+<td><code>colnames</code></td>
+<td><code>Sequence[str]</code></td>
+<td>
+<p>Sequence[str], optional
+List or tuple of column names to be plotted
+By default ["confirmed", "deaths"]</p>
+</td>
+<td><code>['confirmed', 'deaths']</code></td>
+</tr>
+<tr>
+<td><code>plot_object</code></td>
+<td><code>Optional[matplotlib.axes._axes.Axes]</code></td>
+<td>
+<p>Optional[Axes], optional
+Axes to plot onto, if <code>None</code> then defaults to <code>plt.gca()</code>. If the plotly
+backend is being used, this can be a <code>plotly.graph_objects.Figure</code> instead
+By default <code>None</code></p>
+</td>
+<td><code>None</code></td>
+</tr>
+<tr>
+<td><code>color</code></td>
+<td><code>Optional[str]</code></td>
+<td>
+<p>Optional[str], optional
+Color for the plot line, if <code>None</code> then the color is based on the series
+name, e.g. blue for cases, red for deaths
+By default <code>None</code></p>
+</td>
+<td><code>None</code></td>
+</tr>
+<tr>
+<td><code>label_prepend</code></td>
+<td><code>Optional[str]</code></td>
+<td>
+<p>[type], optional
+String to prepend to the label, e.g. "GB" would make the labels "GB cases"
+and "GB deaths", instead of just generic "cases" and "deaths". This is
+automatically added when using a Region as an argument, must be manually
+added when passing a series
+By default <code>""</code></p>
+</td>
+<td><code>None</code></td>
+</tr>
+<tr>
+<td><code>smoothing</code></td>
+<td><code>str</code></td>
+<td>
+<p>str, optional
+Smoothing argument to use, see <code>oscovida.statistics.smooth</code> and
+<code>oscovida.statistics.SMOOTHING_METHODS</code> for more info
+By default '7dayrolling'</p>
+</td>
+<td><code>'7dayrolling'</code></td>
+</tr>
+<tr>
+<td><code>yaxis_auto_lim</code></td>
+<td><code>bool</code></td>
+<td>
+<p>bool, optional
+Uses <code>oscovida.statistics.min_max</code> to work out the minimum and maximum
+r number for the past 28 days, limits the y-axis to that range
+By default True</p>
+</td>
+<td><code>True</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Axes</code></td>
+<td>
+<p>Axes
+    Axes with plotted lines</p>
+</td>
+</tr>
+</tbody>
+</table>
+<details class="quote">
+          <summary>Source code in <code>oscovida/plots/__init__.py</code></summary>
+          <div class="highlight">
+<pre><span></span><code><span class="k">def</span> <span class="nf">plot_r_number</span><span class="p">(</span>
+    <span class="n">region</span><span class="p">:</span> <span class="n">Region</span><span class="p">,</span>
+    <span class="n">plot_object</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Axes</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">colnames</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"confirmed"</span><span class="p">,</span> <span class="s2">"deaths"</span><span class="p">],</span>
+    <span class="n">color</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">label_prepend</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">smoothing</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">'7dayrolling'</span><span class="p">,</span>
+    <span class="n">yaxis_auto_lim</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Axes</span><span class="p">:</span>
+    <span class="sd">"""</span>
+<span class="sd">    Plots the daily r number for an oscovida `Region`, by default plots only</span>
+<span class="sd">    the `confirmed` and `deaths` columns.</span>
+
+<span class="sd">    Works out the daily numbers, applies smoothing, then computes the r number.</span>
+
+<span class="sd">    This is then plotted along with a horizontal black line at a y axis value of 1.</span>
+
+<span class="sd">    Parameters:</span>
+<span class="sd">        region : Region</span>
+<span class="sd">            An oscovida `Region` object to be plotted</span>
+<span class="sd">        colnames : Sequence[str], optional</span>
+<span class="sd">            List or tuple of column names to be plotted</span>
+<span class="sd">            By default ["confirmed", "deaths"]</span>
+<span class="sd">        plot_object : Optional[Axes], optional</span>
+<span class="sd">            Axes to plot onto, if `None` then defaults to `plt.gca()`. If the plotly</span>
+<span class="sd">            backend is being used, this can be a `plotly.graph_objects.Figure` instead</span>
+<span class="sd">            By default `None`</span>
+<span class="sd">        color : Optional[str], optional</span>
+<span class="sd">            Color for the plot line, if `None` then the color is based on the series</span>
+<span class="sd">            name, e.g. blue for cases, red for deaths</span>
+<span class="sd">            By default `None`</span>
+<span class="sd">        label_prepend : [type], optional</span>
+<span class="sd">            String to prepend to the label, e.g. "GB" would make the labels "GB cases"</span>
+<span class="sd">            and "GB deaths", instead of just generic "cases" and "deaths". This is</span>
+<span class="sd">            automatically added when using a Region as an argument, must be manually</span>
+<span class="sd">            added when passing a series</span>
+<span class="sd">            By default `""`</span>
+<span class="sd">        smoothing : str, optional</span>
+<span class="sd">            Smoothing argument to use, see `oscovida.statistics.smooth` and</span>
+<span class="sd">            `oscovida.statistics.SMOOTHING_METHODS` for more info</span>
+<span class="sd">            By default '7dayrolling'</span>
+<span class="sd">        yaxis_auto_lim : bool, optional</span>
+<span class="sd">            Uses `oscovida.statistics.min_max` to work out the minimum and maximum</span>
+<span class="sd">            r number for the past 28 days, limits the y-axis to that range</span>
+<span class="sd">            By default True</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        Axes</span>
+<span class="sd">            Axes with plotted lines</span>
+<span class="sd">    """</span>
+    <span class="k">if</span> <span class="n">label_prepend</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">label_prepend</span> <span class="o">=</span> <span class="n">region</span><span class="o">.</span><span class="n">admin_1</span>
+
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">colnames</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+        <span class="n">colnames</span> <span class="o">=</span> <span class="p">[</span><span class="n">colnames</span><span class="p">]</span>
+
+    <span class="k">for</span> <span class="n">colname</span> <span class="ow">in</span> <span class="n">colnames</span><span class="p">:</span>
+        <span class="n">plot_object</span> <span class="o">=</span> <span class="n">get_backend</span><span class="p">()</span><span class="o">.</span><span class="n">plot_r_number</span><span class="p">(</span>
+            <span class="n">region</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">colname</span><span class="p">],</span>
+            <span class="n">plot_object</span><span class="p">,</span>
+            <span class="n">color</span><span class="o">=</span><span class="n">color</span><span class="p">,</span>
+            <span class="n">label_prepend</span><span class="o">=</span><span class="n">label_prepend</span><span class="p">,</span>
+            <span class="n">smoothing</span><span class="o">=</span><span class="n">smoothing</span><span class="p">,</span>
+            <span class="n">yaxis_auto_lim</span><span class="o">=</span><span class="n">yaxis_auto_lim</span><span class="p">,</span>
+        <span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">plot_object</span>
+</code></pre>
+</div>
+</details>
+</div>
+</div>
+<div class="doc doc-object doc-function">
+<h2 class="doc doc-heading" id="oscovida.plots.plot_summary">
+
+        <code class="highlight language-python">
+plot_summary<span class="p">(</span><span class="n">region</span><span class="p">,</span> <span class="n">label_prepend</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>        </code>
+
+
+      </h2>
+<div class="doc doc-contents ">
+<p>Creates a summary plot for the Region object. This contains:</p>
+<ul>
+<li>Totals</li>
+<li>Daily numbers</li>
+<li>R number</li>
+<li>Growth factor</li>
+<li>Doubling time</li>
+</ul>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>region</code></td>
+<td><code>Region</code></td>
+<td>
+<p>Region
+An oscovida <code>Region</code> object to be plotted</p>
+</td>
+<td><em>required</em></td>
+</tr>
+<tr>
+<td><code>label_prepend</code></td>
+<td><code>Optional[str]</code></td>
+<td>
+<p>[type], optional
+String to prepend to the label, e.g. "GB" would make the labels "GB cases"
+and "GB deaths", instead of just generic "cases" and "deaths". This is
+automatically added when using a Region as an argument, must be manually
+added when passing a series
+By default <code>""</code></p>
+</td>
+<td><code>None</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code></code></td>
+<td>
+<p>Axes
+    Axes with plotted lines</p>
+</td>
+</tr>
+</tbody>
+</table>
+<details class="quote">
+          <summary>Source code in <code>oscovida/plots/__init__.py</code></summary>
+          <div class="highlight">
+<pre><span></span><code><span class="k">def</span> <span class="nf">plot_summary</span><span class="p">(</span>
+    <span class="n">region</span><span class="p">:</span> <span class="n">Region</span><span class="p">,</span>
+    <span class="n">label_prepend</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<span class="p">):</span>
+    <span class="sd">"""</span>
+<span class="sd">    Creates a summary plot for the Region object. This contains:</span>
+
+<span class="sd">    - Totals</span>
+<span class="sd">    - Daily numbers</span>
+<span class="sd">    - R number</span>
+<span class="sd">    - Growth factor</span>
+<span class="sd">    - Doubling time</span>
+
+<span class="sd">    Parameters:</span>
+<span class="sd">        region : Region</span>
+<span class="sd">            An oscovida `Region` object to be plotted</span>
+<span class="sd">        label_prepend : [type], optional</span>
+<span class="sd">            String to prepend to the label, e.g. "GB" would make the labels "GB cases"</span>
+<span class="sd">            and "GB deaths", instead of just generic "cases" and "deaths". This is</span>
+<span class="sd">            automatically added when using a Region as an argument, must be manually</span>
+<span class="sd">            added when passing a series</span>
+<span class="sd">            By default `""`</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        Axes</span>
+<span class="sd">            Axes with plotted lines</span>
+<span class="sd">    """</span>
+    <span class="k">if</span> <span class="n">label_prepend</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">label_prepend</span> <span class="o">=</span> <span class="n">region</span><span class="o">.</span><span class="n">admin_1</span>
+
+    <span class="n">summary_functions</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">'matplotlib'</span><span class="p">:</span> <span class="n">_plot_summary_matplotlib</span><span class="p">,</span>
+        <span class="s1">'plotly'</span><span class="p">:</span> <span class="n">_plot_summary_plotly</span><span class="p">,</span>
+    <span class="p">}</span>
+
+    <span class="k">return</span> <span class="n">summary_functions</span><span class="p">[</span><span class="n">BACKEND</span><span class="o">.</span><span class="n">_backend</span><span class="p">](</span><span class="n">region</span><span class="p">,</span> <span class="n">label_prepend</span><span class="p">)</span>
+</code></pre>
+</div>
+</details>
+</div>
+</div>
+<div class="doc doc-object doc-function">
+<h2 class="doc doc-heading" id="oscovida.plots.plot_totals">
+
+        <code class="highlight language-python">
+plot_totals<span class="p">(</span><span class="n">region</span><span class="p">,</span> <span class="n">plot_object</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">colnames</span><span class="o">=</span><span class="p">[</span><span class="s1">'confirmed'</span><span class="p">,</span> <span class="s1">'deaths'</span><span class="p">],</span> <span class="n">logscale</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">label_prepend</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>        </code>
+
+
+      </h2>
+<div class="doc doc-contents ">
+<p>Plots the total numbers for an oscovida <code>Region</code>, by default plots only
+the <code>confirmed</code> and <code>deaths</code> columns.</p>
+<p>Plots the input series assuming it is a cumulative sum of cases, deaths, or
+recoveries, either onto a new axis or onto a given axis. Plots follow the
+oscovida plotting style.</p>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>region</code></td>
+<td><code>Region</code></td>
+<td>
+<p>Region
+An oscovida <code>Region</code> object to be plotted</p>
+</td>
+<td><em>required</em></td>
+</tr>
+<tr>
+<td><code>colnames</code></td>
+<td><code>Sequence[str]</code></td>
+<td>
+<p>Sequence[str], optional
+List or tuple of column names to be plotted
+By default ["confirmed", "deaths"]</p>
+</td>
+<td><code>['confirmed', 'deaths']</code></td>
+</tr>
+<tr>
+<td><code>plot_object</code></td>
+<td><code>Optional[matplotlib.axes._axes.Axes]</code></td>
+<td>
+<p>Optional[Axes], optional
+Axes to plot onto, if <code>None</code> then defaults to <code>plt.gca()</code>. If the plotly
+backend is being used, this can be a <code>plotly.graph_objects.Figure</code> instead
+By default <code>None</code></p>
+</td>
+<td><code>None</code></td>
+</tr>
+<tr>
+<td><code>logscale</code></td>
+<td><code>bool</code></td>
+<td>
+<p>bool, optional
+[description], by default True</p>
+</td>
+<td><code>True</code></td>
+</tr>
+<tr>
+<td><code>label_prepend</code></td>
+<td><code>Optional[str]</code></td>
+<td>
+<p>Optional[str], optional
+String to prepend to the label, e.g. "GB" would make the labels "GB cases"
+and "GB deaths", instead of just generic "cases" and "deaths". This is
+automatically added when using a Region as an argument, must be manually
+added when passing a series
+By default <code>""</code></p>
+</td>
+<td><code>None</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Axes</code></td>
+<td>
+<p>Axes
+    Axes with plotted lines</p>
+</td>
+</tr>
+</tbody>
+</table>
+<details class="quote">
+          <summary>Source code in <code>oscovida/plots/__init__.py</code></summary>
+          <div class="highlight">
+<pre><span></span><code><span class="k">def</span> <span class="nf">plot_totals</span><span class="p">(</span>
+    <span class="n">region</span><span class="p">:</span> <span class="n">Region</span><span class="p">,</span>
+    <span class="n">plot_object</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Axes</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">colnames</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"confirmed"</span><span class="p">,</span> <span class="s2">"deaths"</span><span class="p">],</span>
+    <span class="n">logscale</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="n">label_prepend</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Axes</span><span class="p">:</span>
+    <span class="sd">"""</span>
+<span class="sd">    Plots the total numbers for an oscovida `Region`, by default plots only</span>
+<span class="sd">    the `confirmed` and `deaths` columns.</span>
+
+<span class="sd">    Plots the input series assuming it is a cumulative sum of cases, deaths, or</span>
+<span class="sd">    recoveries, either onto a new axis or onto a given axis. Plots follow the</span>
+<span class="sd">    oscovida plotting style.</span>
+
+<span class="sd">    Parameters:</span>
+<span class="sd">        region : Region</span>
+<span class="sd">            An oscovida `Region` object to be plotted</span>
+<span class="sd">        colnames : Sequence[str], optional</span>
+<span class="sd">            List or tuple of column names to be plotted</span>
+<span class="sd">            By default ["confirmed", "deaths"]</span>
+<span class="sd">        plot_object : Optional[Axes], optional</span>
+<span class="sd">            Axes to plot onto, if `None` then defaults to `plt.gca()`. If the plotly</span>
+<span class="sd">            backend is being used, this can be a `plotly.graph_objects.Figure` instead</span>
+<span class="sd">            By default `None`</span>
+<span class="sd">        logscale : bool, optional</span>
+<span class="sd">            [description], by default True</span>
+<span class="sd">        label_prepend : Optional[str], optional</span>
+<span class="sd">            String to prepend to the label, e.g. "GB" would make the labels "GB cases"</span>
+<span class="sd">            and "GB deaths", instead of just generic "cases" and "deaths". This is</span>
+<span class="sd">            automatically added when using a Region as an argument, must be manually</span>
+<span class="sd">            added when passing a series</span>
+<span class="sd">            By default `""`</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        Axes</span>
+<span class="sd">            Axes with plotted lines</span>
+<span class="sd">    """</span>
+    <span class="k">if</span> <span class="n">label_prepend</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">label_prepend</span> <span class="o">=</span> <span class="n">region</span><span class="o">.</span><span class="n">admin_1</span>
+
+    <span class="c1">#  colnames should be a list or tuple of strings, if it is just a string then</span>
+    <span class="c1">#  put it into a list here</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">colnames</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+        <span class="n">colnames</span> <span class="o">=</span> <span class="p">[</span><span class="n">colnames</span><span class="p">]</span>
+
+    <span class="k">for</span> <span class="n">colname</span> <span class="ow">in</span> <span class="n">colnames</span><span class="p">:</span>
+        <span class="n">plot_object</span> <span class="o">=</span> <span class="n">get_backend</span><span class="p">()</span><span class="o">.</span><span class="n">plot_totals</span><span class="p">(</span>
+            <span class="n">region</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">colname</span><span class="p">],</span>
+            <span class="n">plot_object</span><span class="p">,</span>
+            <span class="n">logscale</span><span class="o">=</span><span class="n">logscale</span><span class="p">,</span>
+            <span class="n">label_prepend</span><span class="o">=</span><span class="n">label_prepend</span><span class="p">,</span>
+        <span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">plot_object</span>
+</code></pre>
+</div>
+</details>
+</div>
+</div>
+</div>
+</div>
+</div>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
+        
+          <a href="../statistics/" title="Statistics" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+            </div>
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Statistics
+              </div>
+            </div>
+          </a>
+        
+        
+          <a href="../../contributing/" title="Contributing" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                Contributing
+              </div>
+            </div>
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../../assets/javascripts/vendor.2d1db4bd.min.js"></script>
+      <script src="../../assets/javascripts/bundle.6627ddf3.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents"}</script>
+      
+      <script>
+        app = initialize({
+          base: "../..",
+          features: [],
+          search: Object.assign({
+            worker: "../../assets/javascripts/worker/search.5eca75d3.min.js"
+          }, typeof search !== "undefined" && search)
+        })
+      </script>
+      
+    
+  </body>
+</html>

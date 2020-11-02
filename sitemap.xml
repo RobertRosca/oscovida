@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"><url>
+     <loc>https://oscovida.github.io/oscovida/quick-start/</loc>
+     <lastmod>2020-11-02</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://oscovida.github.io/oscovida/examples/germany/</loc>
+     <lastmod>2020-11-02</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://oscovida.github.io/oscovida/api/regions/</loc>
+     <lastmod>2020-11-02</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://oscovida.github.io/oscovida/api/statistics/</loc>
+     <lastmod>2020-11-02</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://oscovida.github.io/oscovida/api/plotting/</loc>
+     <lastmod>2020-11-02</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://oscovida.github.io/oscovida/contributing/</loc>
+     <lastmod>2020-11-02</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+</urlset>

@@ -1,0 +1,967 @@
+
+<!DOCTYPE html>
+
+<html class="no-js" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<meta content="TODO" name="description"/>
+<link href="https://oscovida.github.io/oscovida/api/statistics/" rel="canonical"/>
+<link href="../../assets/images/favicon.png" rel="shortcut icon"/>
+<meta content="mkdocs-1.1.2, mkdocs-material-5.5.14" name="generator"/>
+<title>Statistics - Oscovida Documentation</title>
+<link href="../../assets/stylesheets/main.d3202873.min.css" rel="stylesheet"/>
+<link href="../../assets/stylesheets/palette.ff0a5ce4.min.css" rel="stylesheet"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&amp;display=fallback" rel="stylesheet"/>
+<style>body,input{font-family:"Roboto",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono",SFMono-Regular,Consolas,Menlo,monospace}</style>
+<link href="../../css/mkdocstrings.css" rel="stylesheet"/>
+<link href="../../css/ansi-colours.css" rel="stylesheet"/>
+<link href="../../css/jupyter-cells.css" rel="stylesheet"/>
+<link href="../../css/pandas-dataframe.css" rel="stylesheet"/>
+</head>
+<body data-md-color-accent="" data-md-color-primary="" data-md-color-scheme="preference" dir="ltr">
+<script>matchMedia("(prefers-color-scheme: dark)").matches&&document.body.setAttribute("data-md-color-scheme","slate")</script>
+<input autocomplete="off" class="md-toggle" data-md-toggle="drawer" id="__drawer" type="checkbox"/>
+<input autocomplete="off" class="md-toggle" data-md-toggle="search" id="__search" type="checkbox"/>
+<label class="md-overlay" for="__drawer"></label>
+<div data-md-component="skip">
+<a class="md-skip" href="#oscovida.statistics">
+          Skip to content
+        </a>
+</div>
+<div data-md-component="announce">
+</div>
+<header class="md-header" data-md-component="header">
+<nav aria-label="Header" class="md-header-nav md-grid">
+<a aria-label="Oscovida Documentation" class="md-header-nav__button md-logo" href="https://oscovida.github.io/oscovida" title="Oscovida Documentation">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"></path></svg>
+</a>
+<label class="md-header-nav__button md-icon" for="__drawer">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"></path></svg>
+</label>
+<div class="md-header-nav__title" data-md-component="header-title">
+<div class="md-header-nav__ellipsis">
+<span class="md-header-nav__topic md-ellipsis">
+            Oscovida Documentation
+          </span>
+<span class="md-header-nav__topic md-ellipsis">
+            
+              Statistics
+            
+          </span>
+</div>
+</div>
+<label class="md-header-nav__button md-icon" for="__search">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"></path></svg>
+</label>
+<div class="md-search" data-md-component="search" role="dialog">
+<label class="md-search__overlay" for="__search"></label>
+<div class="md-search__inner" role="search">
+<form class="md-search__form" name="search">
+<input aria-label="Search" autocapitalize="off" autocomplete="off" autocorrect="off" class="md-search__input" data-md-component="search-query" data-md-state="active" name="query" placeholder="Search" spellcheck="false" type="text"/>
+<label class="md-search__icon md-icon" for="__search">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"></path></svg>
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"></path></svg>
+</label>
+<button aria-label="Clear" class="md-search__icon md-icon" data-md-component="search-reset" tabindex="-1" type="reset">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"></path></svg>
+</button>
+</form>
+<div class="md-search__output">
+<div class="md-search__scrollwrap" data-md-scrollfix="">
+<div class="md-search-result" data-md-component="search-result">
+<div class="md-search-result__meta">
+            Initializing search
+          </div>
+<ol class="md-search-result__list"></ol>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="md-header-nav__source">
+<a class="md-source" href="https://github.com/oscovida/oscovida" title="Go to repository">
+<div class="md-source__icon md-icon">
+<svg viewbox="0 0 448 512" xmlns="http://www.w3.org/2000/svg"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"></path></svg>
+</div>
+<div class="md-source__repository">
+    oscovida/oscovida
+  </div>
+</a>
+</div>
+</nav>
+</header>
+<div class="md-container" data-md-component="container">
+<main class="md-main" data-md-component="main">
+<div class="md-main__inner md-grid">
+<div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+<div class="md-sidebar__scrollwrap">
+<div class="md-sidebar__inner">
+<nav aria-label="Navigation" class="md-nav md-nav--primary" data-md-level="0">
+<label class="md-nav__title" for="__drawer">
+<a aria-label="Oscovida Documentation" class="md-nav__button md-logo" href="https://oscovida.github.io/oscovida" title="Oscovida Documentation">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"></path></svg>
+</a>
+    Oscovida Documentation
+  </label>
+<div class="md-nav__source">
+<a class="md-source" href="https://github.com/oscovida/oscovida" title="Go to repository">
+<div class="md-source__icon md-icon">
+<svg viewbox="0 0 448 512" xmlns="http://www.w3.org/2000/svg"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"></path></svg>
+</div>
+<div class="md-source__repository">
+    oscovida/oscovida
+  </div>
+</a>
+</div>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../quick-start/" title="Quick-Start">
+      Quick-Start
+    </a>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" data-md-toggle="nav-2" id="nav-2" type="checkbox"/>
+<label class="md-nav__link" for="nav-2">
+      Examples
+      <span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-label="Examples" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="nav-2">
+<span class="md-nav__icon md-icon"></span>
+        Examples
+      </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../examples/germany/" title="Germany">
+      Germany
+    </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--active md-nav__item--nested">
+<input checked="" class="md-nav__toggle md-toggle" data-md-toggle="nav-3" id="nav-3" type="checkbox"/>
+<label class="md-nav__link" for="nav-3">
+      API Reference
+      <span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-label="API Reference" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="nav-3">
+<span class="md-nav__icon md-icon"></span>
+        API Reference
+      </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../regions/" title="Regions">
+      Regions
+    </a>
+</li>
+<li class="md-nav__item md-nav__item--active">
+<input class="md-nav__toggle md-toggle" data-md-toggle="toc" id="__toc" type="checkbox"/>
+<label class="md-nav__link md-nav__link--active" for="__toc">
+        Statistics
+        <span class="md-nav__icon md-icon"></span>
+</label>
+<a class="md-nav__link md-nav__link--active" href="./" title="Statistics">
+      Statistics
+    </a>
+<nav aria-label="Table of contents" class="md-nav md-nav--secondary">
+<label class="md-nav__title" for="__toc">
+<span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#oscovida.statistics">
+    oscovida.statistics
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#oscovida.statistics.daily">
+    daily()
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#oscovida.statistics.doubling_time">
+    doubling_time()
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#oscovida.statistics.growth_factor">
+    growth_factor()
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#oscovida.statistics.min_max">
+    min_max()
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#oscovida.statistics.r_number">
+    r_number()
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#oscovida.statistics.smooth">
+    smooth()
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../plotting/" title="Plotting">
+      Plotting
+    </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../contributing/" title="Contributing">
+      Contributing
+    </a>
+</li>
+</ul>
+</nav>
+</div>
+</div>
+</div>
+<div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+<div class="md-sidebar__scrollwrap">
+<div class="md-sidebar__inner">
+<nav aria-label="Table of contents" class="md-nav md-nav--secondary">
+<label class="md-nav__title" for="__toc">
+<span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#oscovida.statistics">
+    oscovida.statistics
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#oscovida.statistics.daily">
+    daily()
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#oscovida.statistics.doubling_time">
+    doubling_time()
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#oscovida.statistics.growth_factor">
+    growth_factor()
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#oscovida.statistics.min_max">
+    min_max()
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#oscovida.statistics.r_number">
+    r_number()
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#oscovida.statistics.smooth">
+    smooth()
+  </a>
+</li>
+</ul>
+</nav>
+</div>
+</div>
+</div>
+<div class="md-content">
+<article class="md-content__inner md-typeset">
+<h1>Statistics</h1>
+<div class="doc doc-object doc-module">
+<h2 class="hidden-toc" href="#oscovida.statistics" id="oscovida.statistics" style="visibility: hidden; position: absolute;">
+</h2>
+<div class="doc doc-contents first">
+<p>Module containing some generic statistics functions for use with Oscovida, we
+currently provide the following functions:</p>
+<ul>
+<li><code>daily</code>: Computes the daily change for the series</li>
+<li><code>smooth</code>: Smooths the pandas series with a rolling average and mean</li>
+<li><code>doubling_time</code>: Compute the doubling time for a given series by shifting the
+   rows by one</li>
+<li><code>r_number</code>: Calculate the R-number using a method similar to RKI</li>
+<li><code>growth_factor</code>: Computes the growth factor for a series</li>
+<li><code>min_max</code>: Given a time series, find the min and max values in the time series
+   within the last n days</li>
+</ul>
+<div class="doc doc-children">
+<div class="doc doc-object doc-function">
+<h2 class="doc doc-heading" id="oscovida.statistics.daily">
+<code class="highlight language-python">
+daily<span class="p">(</span><span class="n">cumulative</span><span class="p">,</span> <span class="n">drop_negative</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> </code>
+</h2>
+<div class="doc doc-contents">
+<p>Computes the daily change for the series.</p>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>cumulative</code></td>
+<td><code>Series</code></td>
+<td>
+<p>pd.Series
+Input series of sorted cumulative daily numbers</p>
+</td>
+<td><em>required</em></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Series</code></td>
+<td>
+<p>pd.Series
+    Difference between rows</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Examples:</strong></p>
+<p>TODO</p>
+<details class="quote">
+<summary>Source code in <code>oscovida/statistics.py</code></summary>
+<div class="highlight">
+<pre><span></span><code><span class="k">def</span> <span class="nf">daily</span><span class="p">(</span><span class="n">cumulative</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">,</span> <span class="n">drop_negative</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">:</span>
+    <span class="sd">"""</span>
+<span class="sd">    Computes the daily change for the series.</span>
+
+<span class="sd">    Parameters:</span>
+<span class="sd">        cumulative : pd.Series</span>
+<span class="sd">            Input series of sorted cumulative daily numbers</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        pd.Series</span>
+<span class="sd">            Difference between rows</span>
+
+<span class="sd">    Examples:</span>
+<span class="sd">        TODO</span>
+<span class="sd">    """</span>
+    <span class="n">daily</span> <span class="o">=</span> <span class="n">cumulative</span><span class="o">.</span><span class="n">diff</span><span class="p">()</span>
+
+    <span class="k">if</span> <span class="n">drop_negative</span><span class="p">:</span>
+        <span class="n">daily</span><span class="p">[</span><span class="n">daily</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
+
+    <span class="k">return</span> <span class="n">daily</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span>
+</code></pre>
+</div>
+</details>
+</div>
+</div>
+<div class="doc doc-object doc-function">
+<h2 class="doc doc-heading" id="oscovida.statistics.doubling_time">
+<code class="highlight language-python">
+doubling_time<span class="p">(</span><span class="n">cumulative</span><span class="p">)</span> </code>
+</h2>
+<div class="doc doc-contents">
+<p>Compute the doubling time for a given series by shifting the rows by one.</p>
+<p>The doubling time equation is:</p>
+<div class="highlight">
+<pre><span></span><code>(t2 - t1) * (ln(2)/ln(q2/q1))
+</code></pre>
+</div>
+<p>This function assumes that <code>t2 - t1 = 1</code>. The doubling time is computed
+between subsequent rows. If you want to change the compared periods that
+should be done before calling this function (e.g. compute the weekly mean
+then put that into this function and you will get the weekly doubling time).</p>
+<p>By default</p>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>cumulative</code></td>
+<td><code>Series</code></td>
+<td>
+<p>pd.Series
+Input series of (usually) sorted cumulative daily numbers, as you want
+to find the doubling time of the cumulative number of cases not daily
+number</p>
+</td>
+<td><em>required</em></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Series</code></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>pd.Series
+        Doubling time</p>
+<p><strong>Examples:</strong></p>
+<p>TODO</p>
+<details class="quote">
+<summary>Source code in <code>oscovida/statistics.py</code></summary>
+<div class="highlight">
+<pre><span></span><code><span class="k">def</span> <span class="nf">doubling_time</span><span class="p">(</span><span class="n">cumulative</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">:</span>
+    <span class="sd">"""</span>
+<span class="sd">    Compute the doubling time for a given series by shifting the rows by one.</span>
+
+<span class="sd">    The doubling time equation is:</span>
+
+<span class="sd">    ```</span>
+<span class="sd">    (t2 - t1) * (ln(2)/ln(q2/q1))</span>
+<span class="sd">    ```</span>
+
+<span class="sd">    This function assumes that `t2 - t1 = 1`. The doubling time is computed</span>
+<span class="sd">    between subsequent rows. If you want to change the compared periods that</span>
+<span class="sd">    should be done before calling this function (e.g. compute the weekly mean</span>
+<span class="sd">    then put that into this function and you will get the weekly doubling time).</span>
+
+<span class="sd">    By default</span>
+
+<span class="sd">    Parameters:</span>
+<span class="sd">        cumulative : pd.Series</span>
+<span class="sd">            Input series of (usually) sorted cumulative daily numbers, as you want</span>
+<span class="sd">            to find the doubling time of the cumulative number of cases not daily</span>
+<span class="sd">            number</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">    pd.Series</span>
+<span class="sd">            Doubling time</span>
+
+<span class="sd">    Examples:</span>
+<span class="sd">        TODO</span>
+<span class="sd">    """</span>
+    <span class="n">cumulative_shifted</span> <span class="o">=</span> <span class="n">cumulative</span><span class="o">.</span><span class="n">shift</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>  <span class="c1"># Previous day</span>
+
+    <span class="n">dt</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">cumulative</span> <span class="o">/</span> <span class="n">cumulative_shifted</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">dt</span>
+</code></pre>
+</div>
+</details>
+</div>
+</div>
+<div class="doc doc-object doc-function">
+<h2 class="doc doc-heading" id="oscovida.statistics.growth_factor">
+<code class="highlight language-python">
+growth_factor<span class="p">(</span><span class="n">obj</span><span class="p">)</span> </code>
+</h2>
+<div class="doc doc-contents">
+<p>Computes the growth factor for a series.</p>
+<p>Growth factor is just the percent change day-to-day, in this case we add one
+to get the growth, e.g. 20% more cases than yesterday means 1.2 (120%), or
+a 20% drop would be 0.8 (80%)</p>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>obj</code></td>
+<td><code>Series</code></td>
+<td>
+<p>pd.Series
+Input series of daily numbers</p>
+</td>
+<td><em>required</em></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Series</code></td>
+<td>
+<p>pd.Series
+    Growth factor</p>
+</td>
+</tr>
+</tbody>
+</table>
+<details class="quote">
+<summary>Source code in <code>oscovida/statistics.py</code></summary>
+<div class="highlight">
+<pre><span></span><code><span class="k">def</span> <span class="nf">growth_factor</span><span class="p">(</span><span class="n">obj</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">:</span>
+    <span class="sd">"""</span>
+<span class="sd">    Computes the growth factor for a series.</span>
+
+<span class="sd">    Growth factor is just the percent change day-to-day, in this case we add one</span>
+<span class="sd">    to get the growth, e.g. 20% more cases than yesterday means 1.2 (120%), or</span>
+<span class="sd">    a 20% drop would be 0.8 (80%)</span>
+
+<span class="sd">    Parameters:</span>
+<span class="sd">        obj : pd.Series</span>
+<span class="sd">            Input series of daily numbers</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        pd.Series</span>
+<span class="sd">            Growth factor</span>
+<span class="sd">    """</span>
+    <span class="k">return</span> <span class="n">obj</span><span class="o">.</span><span class="n">pct_change</span><span class="p">()</span> <span class="o">+</span> <span class="mi">1</span>
+</code></pre>
+</div>
+</details>
+</div>
+</div>
+<div class="doc doc-object doc-function">
+<h2 class="doc doc-heading" id="oscovida.statistics.min_max">
+<code class="highlight language-python">
+min_max<span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">at_least</span><span class="o">=</span><span class="p">(</span><span class="mf">0.75</span><span class="p">,</span> <span class="mf">1.25</span><span class="p">),</span> <span class="n">alert</span><span class="o">=</span><span class="p">(</span><span class="mf">0.1</span><span class="p">,</span> <span class="mi">100</span><span class="p">))</span> </code>
+</h2>
+<div class="doc doc-contents">
+<p>Given a time series, find the min and max values in the time series
+within the last n days.</p>
+<p>If those values are within the interval <code>at_least</code>, then use the values in
+at_least as the limits. if those values are outside the interval <code>at_least</code>
+then exchange the interval accordingly.</p>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>obj</code></td>
+<td><code>Series</code></td>
+<td>
+<p>pd.Series
+Input series</p>
+</td>
+<td><em>required</em></td>
+</tr>
+<tr>
+<td><code>n</code></td>
+<td><code>int</code></td>
+<td>
+<p>int
+Past number of days looked at</p>
+</td>
+<td><em>required</em></td>
+</tr>
+<tr>
+<td><code>at_least</code></td>
+<td><code></code></td>
+<td>
+<p>tuple, optional
+by default (0.75, 1.25)</p>
+</td>
+<td><code>(0.75, 1.25)</code></td>
+</tr>
+<tr>
+<td><code>alert</code></td>
+<td><code></code></td>
+<td>
+<p>tuple, optional
+Currently not used, by default (0.1, 100)</p>
+</td>
+<td><code>(0.1, 100)</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Tuple</code></td>
+<td>
+<p>Tuple
+    Tuple of (min, max)</p>
+</td>
+</tr>
+</tbody>
+</table>
+<details class="quote">
+<summary>Source code in <code>oscovida/statistics.py</code></summary>
+<div class="highlight">
+<pre><span></span><code><span class="k">def</span> <span class="nf">min_max</span><span class="p">(</span><span class="n">obj</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">,</span> <span class="n">n</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">at_least</span><span class="o">=</span><span class="p">(</span><span class="mf">0.75</span><span class="p">,</span> <span class="mf">1.25</span><span class="p">),</span> <span class="n">alert</span><span class="o">=</span><span class="p">(</span><span class="mf">0.1</span><span class="p">,</span> <span class="mi">100</span><span class="p">))</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">:</span>
+    <span class="sd">"""</span>
+<span class="sd">    Given a time series, find the min and max values in the time series</span>
+<span class="sd">    within the last n days.</span>
+
+<span class="sd">    If those values are within the interval `at_least`, then use the values in</span>
+<span class="sd">    at_least as the limits. if those values are outside the interval `at_least`</span>
+<span class="sd">    then exchange the interval accordingly.</span>
+
+<span class="sd">    Parameters:</span>
+<span class="sd">        obj : pd.Series</span>
+<span class="sd">            Input series</span>
+<span class="sd">        n : int</span>
+<span class="sd">            Past number of days looked at</span>
+<span class="sd">        at_least : tuple, optional</span>
+<span class="sd">            by default (0.75, 1.25)</span>
+<span class="sd">        alert : tuple, optional</span>
+<span class="sd">            Currently not used, by default (0.1, 100)</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        Tuple</span>
+<span class="sd">            Tuple of (min, max)</span>
+<span class="sd">    """</span>
+    <span class="k">if</span> <span class="n">n</span> <span class="o">&gt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">obj</span><span class="p">):</span>
+        <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span>
+
+    <span class="n">obj</span> <span class="o">=</span> <span class="n">obj</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">inf</span><span class="p">,</span> <span class="n">math</span><span class="o">.</span><span class="n">nan</span><span class="p">)</span>
+
+    <span class="c1"># the -0.1 is to make extra space because the line we draw is thick</span>
+    <span class="n">min_</span> <span class="o">=</span> <span class="n">obj</span><span class="p">[</span><span class="o">-</span><span class="n">n</span><span class="p">:]</span><span class="o">.</span><span class="n">min</span><span class="p">()</span> <span class="o">-</span> <span class="mf">0.1</span>
+    <span class="n">max_</span> <span class="o">=</span> <span class="n">obj</span><span class="p">[</span><span class="o">-</span><span class="n">n</span><span class="p">:]</span><span class="o">.</span><span class="n">max</span><span class="p">()</span> <span class="o">+</span> <span class="mf">0.1</span>
+
+    <span class="k">if</span> <span class="n">min_</span> <span class="o">&lt;</span> <span class="n">at_least</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span>
+        <span class="n">min_final</span> <span class="o">=</span> <span class="n">min_</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">min_final</span> <span class="o">=</span> <span class="n">at_least</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+    <span class="k">if</span> <span class="n">max_</span> <span class="o">&gt;</span> <span class="n">at_least</span><span class="p">[</span><span class="mi">1</span><span class="p">]:</span>
+        <span class="n">max_final</span> <span class="o">=</span> <span class="n">max_</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">max_final</span> <span class="o">=</span> <span class="n">at_least</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+
+    <span class="c1">#  TODO: Add alert logging</span>
+
+    <span class="k">return</span> <span class="n">min_final</span><span class="p">,</span> <span class="n">max_final</span>
+</code></pre>
+</div>
+</details>
+</div>
+</div>
+<div class="doc doc-object doc-function">
+<h2 class="doc doc-heading" id="oscovida.statistics.r_number">
+<code class="highlight language-python">
+r_number<span class="p">(</span><span class="n">cumulative</span><span class="p">,</span> <span class="n">tau</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span> </code>
+</h2>
+<div class="doc doc-contents">
+<p>Calculate the R-number using a method similar to RKI[1]. Assumes that the
+input series is sorted cumulative daily numbers.</p>
+<p>[1] Robert Koch Institute: Epidemiologisches Bulletin 17 | 23 April 2020
+https://www.rki.de/DE/Content/Infekt/EpidBull/Archiv/2020/Ausgaben/17_20.html</p>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>cumulative</code></td>
+<td><code>Series</code></td>
+<td>
+<p>pd.Series
+Input series of sorted cumulative daily numbers</p>
+</td>
+<td><em>required</em></td>
+</tr>
+<tr>
+<td><code>tau</code></td>
+<td><code>int</code></td>
+<td>
+<p>int, optional
+Day averages, by default 4</p>
+</td>
+<td><code>4</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Series</code></td>
+<td>
+<p>pd.Series
+    R number per-day</p>
+</td>
+</tr>
+</tbody>
+</table>
+<details class="quote">
+<summary>Source code in <code>oscovida/statistics.py</code></summary>
+<div class="highlight">
+<pre><span></span><code><span class="k">def</span> <span class="nf">r_number</span><span class="p">(</span><span class="n">cumulative</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">,</span> <span class="n">tau</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">4</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">:</span>
+    <span class="sd">"""</span>
+<span class="sd">    Calculate the R-number using a method similar to RKI[1]. Assumes that the</span>
+<span class="sd">    input series is sorted cumulative daily numbers.</span>
+
+<span class="sd">    [1] Robert Koch Institute: Epidemiologisches Bulletin 17 | 23 April 2020</span>
+<span class="sd">    https://www.rki.de/DE/Content/Infekt/EpidBull/Archiv/2020/Ausgaben/17_20.html</span>
+
+<span class="sd">    Parameters:</span>
+<span class="sd">        cumulative : pd.Series</span>
+<span class="sd">            Input series of sorted cumulative daily numbers</span>
+<span class="sd">        tau : int, optional</span>
+<span class="sd">            Day averages, by default 4</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        pd.Series</span>
+<span class="sd">            R number per-day</span>
+<span class="sd">    """</span>
+    <span class="c1"># TODO: Look at using method from:</span>
+    <span class="c1"># https://www.medrxiv.org/content/10.1101/2020.04.19.20071886v2.full.pdf</span>
+    <span class="c1"># http://trackingr-env.eba-9muars8y.us-east-2.elasticbeanstalk.com/</span>
+    <span class="c1"># and</span>
+    <span class="c1"># https://valeriupredoi.github.io/</span>
+
+    <span class="n">rolling_avg</span> <span class="o">=</span> <span class="n">cumulative</span><span class="o">.</span><span class="n">rolling</span><span class="p">(</span><span class="n">tau</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+    <span class="n">R</span> <span class="o">=</span> <span class="n">rolling_avg</span> <span class="o">/</span> <span class="n">rolling_avg</span><span class="o">.</span><span class="n">shift</span><span class="p">(</span><span class="n">tau</span><span class="p">)</span>
+    <span class="n">R2</span> <span class="o">=</span> <span class="n">R</span><span class="o">.</span><span class="n">shift</span><span class="p">(</span><span class="o">-</span><span class="n">tau</span><span class="p">)</span>
+
+    <span class="n">R2</span><span class="p">[(</span><span class="n">rolling_avg</span><span class="o">.</span><span class="n">shift</span><span class="p">(</span><span class="n">tau</span><span class="p">)</span> <span class="o">==</span> <span class="mf">0.0</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">rolling_avg</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)]</span> <span class="o">=</span> <span class="mi">1</span>
+
+    <span class="k">return</span> <span class="n">R2</span>
+</code></pre>
+</div>
+</details>
+</div>
+</div>
+<div class="doc doc-object doc-function">
+<h2 class="doc doc-heading" id="oscovida.statistics.smooth">
+<code class="highlight language-python">
+smooth<span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">kind</span><span class="o">=</span><span class="s1">'weak'</span><span class="p">,</span> <span class="n">compound</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> </code>
+</h2>
+<div class="doc doc-contents">
+<p>Smooths the pandas series with a rolling average and mean.</p>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>obj</code></td>
+<td><code>Series</code></td>
+<td>
+<p>pd.Series
+Input series of cumulative or daily numbers</p>
+</td>
+<td><em>required</em></td>
+</tr>
+<tr>
+<td><code>kind</code></td>
+<td><code>str</code></td>
+<td>
+<p>str, optional
+Smoothing approach, either <code>'weak'</code>, <code>'strong'</code>, or <code>'7dayrolling</code>', by
+default 'weak'. The names correspond to:
+- 'weak': ({'window': 9, 'center': True, 'win_type': 'gaussian', 'min_periods': 1}, {'mean_std': 3})
+- 'strong': ({'window': 4, 'center': True, 'win_type': 'gaussian', 'min_periods': 1}, {'mean_std': 2})
+- '7dayrolling': ({'window': 7, 'center': True, 'win_type': 'gaussian', 'min_periods': 7,}, {'mean_std': 3,},</p>
+</td>
+<td><code>'weak'</code></td>
+</tr>
+<tr>
+<td><code>compound</code></td>
+<td><code>bool</code></td>
+<td>
+<p>bool
+If smoothing should be compounded, default to <code>True</code>. e.g. picking
+<code>strong</code> means that the data is first smoothed with <code>weak</code> smoothing,
+and <code>strong</code> smoothing is applied to the already smoothed data</p>
+</td>
+<td><code>True</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Series</code></td>
+<td>
+<p>pd.Series
+    Smoothed series</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Examples:</strong></p>
+<p>TODO</p>
+<details class="quote">
+<summary>Source code in <code>oscovida/statistics.py</code></summary>
+<div class="highlight">
+<pre><span></span><code><span class="k">def</span> <span class="nf">smooth</span><span class="p">(</span><span class="n">obj</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">,</span> <span class="n">kind</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">'weak'</span><span class="p">,</span> <span class="n">compound</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">:</span>
+    <span class="sd">"""</span>
+<span class="sd">    Smooths the pandas series with a rolling average and mean.</span>
+
+<span class="sd">    Parameters:</span>
+<span class="sd">        obj : pd.Series</span>
+<span class="sd">            Input series of cumulative or daily numbers</span>
+<span class="sd">        kind : str, optional</span>
+<span class="sd">            Smoothing approach, either `'weak'`, `'strong'`, or `'7dayrolling`', by</span>
+<span class="sd">            default 'weak'. The names correspond to:</span>
+<span class="sd">            - 'weak': ({'window': 9, 'center': True, 'win_type': 'gaussian', 'min_periods': 1}, {'mean_std': 3})</span>
+<span class="sd">            - 'strong': ({'window': 4, 'center': True, 'win_type': 'gaussian', 'min_periods': 1}, {'mean_std': 2})</span>
+<span class="sd">            - '7dayrolling': ({'window': 7, 'center': True, 'win_type': 'gaussian', 'min_periods': 7,}, {'mean_std': 3,},</span>
+<span class="sd">        ),</span>
+<span class="sd">        compound : bool</span>
+<span class="sd">            If smoothing should be compounded, default to `True`. e.g. picking</span>
+<span class="sd">            `strong` means that the data is first smoothed with `weak` smoothing,</span>
+<span class="sd">            and `strong` smoothing is applied to the already smoothed data</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        pd.Series</span>
+<span class="sd">            Smoothed series</span>
+
+<span class="sd">    Examples:</span>
+<span class="sd">        TODO</span>
+<span class="sd">    """</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="n">kind</span> <span class="o">==</span> <span class="s1">'strong'</span><span class="p">)</span> <span class="o">&amp;</span> <span class="n">compound</span><span class="p">:</span>
+        <span class="n">obj</span> <span class="o">=</span> <span class="n">obj</span><span class="o">.</span><span class="n">rolling</span><span class="p">(</span><span class="o">**</span><span class="n">SMOOTHING_METHODS</span><span class="p">[</span><span class="s1">'weak'</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span>
+            <span class="n">std</span><span class="o">=</span><span class="n">SMOOTHING_METHODS</span><span class="p">[</span><span class="s1">'weak'</span><span class="p">][</span><span class="mi">1</span><span class="p">][</span><span class="s1">'mean_std'</span><span class="p">]</span>
+        <span class="p">)</span>
+
+    <span class="n">res</span> <span class="o">=</span> <span class="n">obj</span><span class="o">.</span><span class="n">rolling</span><span class="p">(</span><span class="o">**</span><span class="n">SMOOTHING_METHODS</span><span class="p">[</span><span class="n">kind</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span>
+        <span class="n">std</span><span class="o">=</span><span class="n">SMOOTHING_METHODS</span><span class="p">[</span><span class="n">kind</span><span class="p">][</span><span class="mi">1</span><span class="p">][</span><span class="s1">'mean_std'</span><span class="p">]</span>
+    <span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">res</span>
+</code></pre>
+</div>
+</details>
+</div>
+</div>
+</div>
+</div>
+</div>
+</article>
+</div>
+</div>
+</main>
+<footer class="md-footer">
+<div class="md-footer-nav">
+<nav aria-label="Footer" class="md-footer-nav__inner md-grid">
+<a class="md-footer-nav__link md-footer-nav__link--prev" href="../regions/" rel="prev" title="Regions">
+<div class="md-footer-nav__button md-icon">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"></path></svg>
+</div>
+<div class="md-footer-nav__title">
+<div class="md-ellipsis">
+<span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Regions
+              </div>
+</div>
+</a>
+<a class="md-footer-nav__link md-footer-nav__link--next" href="../plotting/" rel="next" title="Plotting">
+<div class="md-footer-nav__title">
+<div class="md-ellipsis">
+<span class="md-footer-nav__direction">
+                  Next
+                </span>
+                Plotting
+              </div>
+</div>
+<div class="md-footer-nav__button md-icon">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"></path></svg>
+</div>
+</a>
+</nav>
+</div>
+<div class="md-footer-meta md-typeset">
+<div class="md-footer-meta__inner md-grid">
+<div class="md-footer-copyright">
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" rel="noopener" target="_blank">
+          Material for MkDocs
+        </a>
+</div>
+</div>
+</div>
+</footer>
+</div>
+<script src="../../assets/javascripts/vendor.2d1db4bd.min.js"></script>
+<script src="../../assets/javascripts/bundle.6627ddf3.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents"}</script>
+<script>
+        app = initialize({
+          base: "../..",
+          features: [],
+          search: Object.assign({
+            worker: "../../assets/javascripts/worker/search.5eca75d3.min.js"
+          }, typeof search !== "undefined" && search)
+        })
+      </script>
+</body>
+</html>
