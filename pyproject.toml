@@ -43,27 +43,16 @@ readme = "README.rst"
 
 [tool.poetry.dependencies]
 python = "^3.7"
-joblib = "^0.16.0"
-seaborn = "^0.10.1"
 matplotlib = "<3.3"
-markdown = "^3.2.2"
 numpy = "^1.19.0"
-scipy = "^1.5.1"
-pelican = "^4.2.0"
-pelican-jupyter = "^0.10.0"
-tabulate = "^0.8.7"
-tqdm = "^4.48.0"
-ipywidgets = "^7.5.1"
-ipynb_py_convert = "^0.4.5"
-click = "^7.1.2"
 pycountry = "^20.7.3"
 requests = "^2.24.0"
 pandas = "^1.1.0"
-multipledispatch = "^0.6.0"
 appdirs = "^1.4.4"
 plotly = { version = "^4.9.0", optional = true }
 psutil = { version = "^5.7.2", optional = true }
 kaleido ={ version =  "^0.0.3", optional = true }
+scipy = "^1.5.3"
 
 [tool.poetry.dev-dependencies]
 black = "^19.10b0"
