@@ -16,22 +16,27 @@ nav:
   - Quick-Start: './quick-start.ipynb'
   - Examples:
     - 'Germany': './examples/germany.ipynb'
-  - API Documentation:
+  - API Reference:
     - 'Regions': './api/regions.md'
     - 'Statistics': './api/statistics.md'
     - 'Plotting': './api/plotting.md'
   - Contributing: './contributing.md'
 
+extra_css:
+  - css/mkdocstrings.css
+
 plugins:
   - search
-  - mkdocstrings
+  - mkdocstrings:
+      handlers:
+        python:
+          setup_commands:
+            - import sys
+            - sys.path.append("docs")
   - mknotebooks:
         binder: true
         binder_service_name: "gh"
         binder_branch: "master"
-
-extra_css:
-  - css/mkdocstrings.css
 
 markdown_extensions:
   - tables
@@ -39,3 +44,9 @@ markdown_extensions:
   - pymdownx.superfences
   - pymdownx.details
   - codehilite
+  - pymdownx.emoji
+  - pymdownx.superfences
+  - pymdownx.tabbed
+  - pymdownx.tasklist
+  - toc:
+      permalink: "¤"

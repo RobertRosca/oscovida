@@ -20,15 +20,15 @@ class NoDataAvailable(Exception):
 
 class Cache:
     def __init__(self) -> None:
-        """Class used to manage covid19dh data caching
+        """
+        Class used to manage covid19dh data caching
 
         Note: the cache automatically cleans itself, data older than one day
         will be deleted unless it is explicitly vintage data
 
-        Parameters
-        ----------
-        cache_dir : [type], optional Directory to store cache, by default
-            appdirs.user_cache_dir('covid19dh')
+        Parameters:
+            cache_dir : [type], optional Directory to store cache, by default
+                appdirs.user_cache_dir('covid19dh')
         """
         self.cache_dir = CACHE_DIR
 
@@ -88,20 +88,19 @@ class Cache:
     def read(
         self, level: int, dt: datetime.datetime, raw: bool, vintage: bool
     ) -> pd.DataFrame:
-        """Read data from the cache for some given parameters
+        """
+        Read data from the cache for some given parameters
 
-        Parameters
-        ----------
-        level : int
-            Administrative level
-        dt : datetime.datetime
-            A dataset containing **all** data up to this date will be fetched
-        raw : bool
-        vintage : bool
+        Parameters:
+            level : int
+                Administrative level
+            dt : datetime.datetime
+                A dataset containing **all** data up to this date will be fetched
+            raw : bool
+            vintage : bool
 
-        Returns
-        -------
-        pd.DataFrame
+        Returns:
+            pd.DataFrame
         """
         return pd.read_csv(
             self._cache_path(level, dt, raw, vintage),
@@ -180,36 +179,35 @@ def get(
     raw: bool = False,
     vintage: bool = False,
 ) -> pd.DataFrame:
-    """Fetches data from [covid19datahub.io](covid19datahub.io) for the specified
+    """
+    Fetches data from [covid19datahub.io](covid19datahub.io) for the specified
     level, and filters by country if one is given.
 
-    Parameters
-    ----------
-    country : Optional[str], optional
-        Country to filter by, returns full table if `None`, by default None
-    level : int, optional
-        Administrative level of the table, 1 is at the country level, 2 sub-
-        country (typically states/regions),and 2 is sub-state level (typically
-        individual cities or districts). Only accepts values of 1, 2, or 3, by
-        default 1
-    start : Optional[datetime.date], optional
-        Start of data, by default `datetime.date(2019, 1, 1)`
-    end : Optional[datetime.datetime], optional
-        End of data, if `None` it is set to the current time, by default `None`
-    cache : Optional[Cache], optional
-        Cache option to use, by default `oscovida.covid19dh.Cache()`
-    raw : bool, optional
-        Warning: Experimental. If `True`, downloads the raw data tables, by
-        default `False`
-    vintage : bool, optional
-        Warning: Experimental. If `True`, downloads vintage data, by default `False`
+    Parameters:
+        country : Optional[str], optional
+            Country to filter by, returns full table if `None`, by default None
+        level : int, optional
+            Administrative level of the table, 1 is at the country level, 2 sub-
+            country (typically states/regions),and 2 is sub-state level (typically
+            individual cities or districts). Only accepts values of 1, 2, or 3, by
+            default 1
+        start : Optional[datetime.date], optional
+            Start of data, by default `datetime.date(2019, 1, 1)`
+        end : Optional[datetime.datetime], optional
+            End of data, if `None` it is set to the current time, by default `None`
+        cache : Optional[Cache], optional
+            Cache option to use, by default `oscovida.covid19dh.Cache()`
+        raw : bool, optional
+            Warning: Experimental. If `True`, downloads the raw data tables, by
+            default `False`
+        vintage : bool, optional
+            Warning: Experimental. If `True`, downloads vintage data, by default `False`
 
-    Returns
-    -------
-    pd.DataFrame
-        DataFrame containing the covid data for a specified level, filtered by
-        the specified country. The index is set to `date`, and each row contains
-        the cumulative numbers for a region up to the specified date.
+    Returns:
+        pd.DataFrame
+            DataFrame containing the covid data for a specified level, filtered by
+            the specified country. The index is set to `date`, and each row contains
+            the cumulative numbers for a region up to the specified date.
     """
     end = datetime.datetime.now() if end is None else end
     end = _parse_date(end)
@@ -264,19 +262,18 @@ def get(
 
 
 def cite(x: pd.DataFrame, raw: bool = False) -> List[str]:
-    """Get a list of sources for a given covid19dh DataFrame
+    """
+    Get a list of sources for a given covid19dh DataFrame
 
-    Parameters
-    ----------
-    x : pd.DataFrame
-        Input covid19dh DataFrame
-    raw : bool, optional
-        Set to `True` if the data is raw data, by default `False`
+    Parameters:
+        x : pd.DataFrame
+            Input covid19dh DataFrame
+        raw : bool, optional
+            Set to `True` if the data is raw data, by default `False`
 
-    Returns
-    -------
-    List[str]
-        List of sources, each element is a string
+    Returns:
+        List[str]
+            List of sources, each element is a string
     """
     # get sources
     url = 'https://storage.covid19datahub.io/src.csv'

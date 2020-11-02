@@ -29,7 +29,7 @@ class Region:
         """
         Parameters:
             country: str
-                Country name string (e.g. 'United States') or alpha_3 string,
+                Country name string (e.g. 'United States') or `alpha_3` string,
                 administrative area of top level
                 (e.g. 'USA')
             admin_2: Optional[str] = None

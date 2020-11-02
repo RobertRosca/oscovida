@@ -1,3 +1,1 @@
-# Regions
-
 ::: oscovida.regions

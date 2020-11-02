@@ -22,6 +22,12 @@ pip install -e ".[dev]"
 This will create a new virtual environment `.venv`, which is then activated and
 used to install all of the development dependencies for oscovida.
 
+If you want to interactively work with the notebooks you can then install
+Jupyter in to this environment (`pip install jupyterlab`), or you can install
+ipykernel (`pip install ipykernel`) and then install just a Jupyter kernel so
+that the environment can be used by an existing Jupyter installation (`python3
+-m ipykernel install --user --name oscovdia`).
+
 Oscovida has relatively strict dependency management and code style guidelines,
 you can execute these manually by running `black` and `isort` on any relevant
 files, and if you have added or removed dependencies you should run

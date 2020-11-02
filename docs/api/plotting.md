@@ -1,3 +1,1 @@
-##Plotting
-
 ::: oscovida.plots

@@ -1,3 +1,1 @@
-# Statistics
-
 ::: oscovida.statistics
