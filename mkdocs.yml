@@ -1,6 +1,6 @@
 site_name: Oscovida Documentation
 site_description: TODO
-site_url: https://oscovida.github.io
+site_url: https://oscovida.github.io/oscovida
 
 theme:
   name: material
@@ -48,5 +48,3 @@ markdown_extensions:
   - pymdownx.superfences
   - pymdownx.tabbed
   - pymdownx.tasklist
-  - toc:
-      permalink: "¤"
