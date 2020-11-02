@@ -12,10 +12,16 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
+    continue-on-error: ${{ matrix.experimental }}
     strategy:
       fail-fast: false
       matrix:
-        python-version: [3.7, 3.8, 3.x]
+        python-version: [3.7, 3.8]
+        experimental: [false]
+        include:
+            - python-version: 3.x
+              os: ubuntu-latest
+              experimental: true
 
     steps:
     - uses: actions/checkout@v2
