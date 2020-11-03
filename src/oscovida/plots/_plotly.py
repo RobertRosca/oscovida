@@ -11,9 +11,6 @@ from plotly.graph_objects import Figure
 
 from .. import statistics
 
-plotly.offline.init_notebook_mode()
-
-
 COLOR_MAPPING = {
     'confirmed': {
         'totals': '#338abd',
