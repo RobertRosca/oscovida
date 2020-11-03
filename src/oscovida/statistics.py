@@ -13,8 +13,7 @@ currently provide the following functions:
 """
 
 import math
-from functools import singledispatch
-from typing import Tuple, Union
+from typing import Tuple
 
 import numpy as np
 import pandas as pd
