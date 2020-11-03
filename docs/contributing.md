@@ -95,3 +95,9 @@ pytest --verbose --cov=oscovida --nbval ./docs/
 
 We aim for high coverage with our tests, so if you add in additional features
 please add in tests for them as well.
+
+Sometimes issues with the test will only occur in the GitHub Runner itself and
+the issue cannot be reproduced locally, in this case it is possible to use
+[act](https://github.com/nektos/act/) to run the CI locally in an identical
+environment to the Runner. To do this install act and then run `act -P
+ubuntu-latest=nektos/act-environments-ubuntu:18.04 -j test`.
