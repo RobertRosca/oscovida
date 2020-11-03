@@ -52,9 +52,7 @@ jobs:
 
     - name: Test with nbval
       run: |
-        pytest --verbose --cov-report xml:cov.xml --cov=oscovida --cov-append --nbval ./tests/plots/test_backend_system.ipynb
-        pytest --verbose --cov-report xml:cov.xml --cov=oscovida --cov-append --nbval ./tests/plots/test_plotly.ipynb
-        pytest --verbose --cov-report xml:cov.xml --cov=oscovida --cov-append --nbval ./tests/plots/test_matplotlib.ipynb
+        pytest -s --verbose --cov-report xml:cov.xml --cov=oscovida --cov-append --nbval ./tests/plots/
 
 
     - uses: codecov/codecov-action@v1
