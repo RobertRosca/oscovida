@@ -105,6 +105,7 @@ class Region:
         #  Implemented so that the data does not have to be loaded if a Region
         #  object is only being created to be used for report generation
         self.lazy = lazy
+        self._data = None
 
         country = admin_1 if admin_1 is not None else country
 
@@ -175,27 +176,31 @@ class Region:
 
     @property
     def data(self):
-        #  Uses LRU cache so repeated calls to get are fine
-        data = covid19dh.get(
-            self.admin_1,
-            level=self.level,
-            start=self.start,
-            end=self.end,
-            raw=self.raw,
-            vintage=self.vintage,
-        )
+        if self._data is None:
+            self._data = covid19dh.get(
+                self.admin_1,
+                level=self.level,
+                start=self.start,
+                end=self.end,
+                raw=self.raw,
+                vintage=self.vintage,
+            )
 
-        if self._query:
-            return data.query(" & ".join(self._query))
-        else:
-            return data
+            if self._query:
+                self._data = self._data.query(" & ".join(self._query))
+
+        return self._data
+
+    @data.setter
+    def data(self, data):
+        self._data = data
 
     @staticmethod
     def _top_level_region_parser(region: Optional[str]):
-        if region is None or region == '*':
+        if region == '*':
             #  If `admin_1` was set to `None`, then we return the entire unfiltered
             #  dataset, so no checks need to be performed
-            return namedtuple('Country', ['alpha_3', 'name'])(None, None)
+            return namedtuple('Country', ['alpha_3', 'name'])(None, '*')
 
         try:
             pyc_admin_1: pycountry.db.Country = pycountry.countries.lookup(region)  # type: ignore
