@@ -44,6 +44,7 @@ setup(
     package_data={},
     install_requires=[
         'appdirs==1.*,>=1.4.4',
+        'fastcore==1.*,>=1.3.1',
         'matplotlib<3.3',
         'numpy==1.*,>=1.19.0',
         'pandas==1.*,>=1.1.0',
