@@ -156,8 +156,9 @@ class Region:
             if self.admin_2:
                 if self.admin_2 != '*':
                     self._check_admin_level(self.admin_2, level=2)
-
-                self._query.append(f'administrative_area_level_2 == "{self.admin_2}"')
+                    self._query.append(
+                        f'administrative_area_level_2 == "{self.admin_2}"'
+                    )
             else:
                 self.admin_2 = '*'
         else:
@@ -167,8 +168,9 @@ class Region:
             if self.admin_3:
                 if self.admin_3 != '*':
                     self._check_admin_level(self.admin_3, level=3)
-
-                self._query.append(f'administrative_area_level_3 == "{self.admin_3}"')
+                    self._query.append(
+                        f'administrative_area_level_3 == "{self.admin_3}"'
+                    )
             else:
                 self.admin_3 = '*'
         else:
@@ -186,14 +188,17 @@ class Region:
                 vintage=self.vintage,
             )
 
-            if self._query:
-                self._data = self._data.query(" & ".join(self._query))
+        if self._query:
+            self._data = self._data.query(" & ".join(self._query))
 
         return self._data
 
     @data.setter
-    def data(self, data):
+    def data(self, data, query=None):
+        #  TODO: Add docstring explaining how query gets applied and that if you
+        #  want to insert your own data it will filter it if query is not None
         self._data = data
+        self._query = query
 
     @staticmethod
     def _top_level_region_parser(region: Optional[str]):
