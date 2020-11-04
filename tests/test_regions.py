@@ -100,6 +100,53 @@ def test_data_levels(test_input, expected_output):
         assert region.data['administrative_area_level_3'].unique() == [admin_3]
 
 
+@pytest.mark.parametrize(
+    'test_input,expected_output',
+    [
+        (('*',), ('*', None, None, None, 1)),
+        (('Germany', '*'), ('Germany', 'DEU', '*', None, 2)),
+        (
+            ('USA', 'California', '*'),
+            ('United States', 'USA', 'California', '*', 3),
+        ),
+    ],
+)
+def test_data_wildcard(test_input, expected_output):
+    country, admin_1, admin_2, admin_3, level = expected_output
+
+    region = regions.Region(*test_input)
+
+    assert region.level == level
+
+    assert region.country == country
+
+    if admin_1 == '*':
+        assert region.admin_1 == admin_1
+        assert len(region.data['administrative_area_level_1'].unique()) > 10
+
+    if admin_2 == '*':
+        assert region.admin_2 == admin_2
+        assert len(region.data['administrative_area_level_2'].unique()) > 10
+
+    if admin_3 == '*':
+        assert region.admin_3 == admin_3
+        assert len(region.data['administrative_area_level_3'].unique()) > 10
+
+
+def test_data_overwrite():
+    example_data = regions.Region('Germany').data
+
+    #  This would normally filter the USA state-level data down to California
+    target_region = regions.Region('USA', 'California')
+    assert 'California' in target_region._query[0]
+
+    target_region.data = example_data
+
+    assert target_region._query is None
+
+    assert all(target_region.data == example_data)
+
+
 def test_raises_invalid_admin_name(mock_cache_dir):
     with pytest.raises(LookupError):
         regions.Region('UK')
