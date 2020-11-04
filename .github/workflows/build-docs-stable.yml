@@ -1,0 +1,44 @@
+name: Build Docs
+
+on:
+  push:
+    branches:
+      - main
+  release:
+    types: [created]
+
+jobs:
+  build:
+    runs-on: ubuntu-18.04
+    steps:
+
+      - uses: actions/checkout@v2
+
+      - name: Set up Python
+        uses: actions/setup-python@v1
+        with:
+          python-version: "3.7"
+
+      - name: Install docs extras
+        run: python3.7 -m pip install ".[docs]"
+
+      - name: Set up gh-pages branch
+        uses: actions/checkout@v2
+        with:
+          path: 'gh-pages'
+          ref: 'gh-pages'
+
+      - name: Build docs
+        run: |
+          export PAGE_DIR=$(basename {{ github.ref }})
+          mkdocs build --clean -d gh-pages/PAGE_DIR
+
+      - name: Commit changes
+        run: |
+          export PAGE_DIR=$(basename {{ github.ref }})
+          cd gh-pages
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add PAGE_DIR --all
+          git commit -m "Generated docs for $PAGE_DIR on $(date)"
+          git push
