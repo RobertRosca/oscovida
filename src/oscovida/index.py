@@ -8,7 +8,9 @@ from .regions import Region
 
 @delegates()
 class Index(Region):
-    def __init__(self, columns: Optional[List] = None, **kwargs) -> None:
+    def __init__(self, country, columns: Optional[List] = None, **kwargs) -> None:
+        kwargs['country'] = country
+
         super().__init__(**kwargs)
 
         if columns is None:
