@@ -123,7 +123,7 @@ class Region:
         self._query = []
 
         if level is None:
-            if self.admin_1 is None:
+            if self.country is None:
                 level = 1
             else:
                 #  Sets level to the highest specified administrative region
@@ -131,7 +131,7 @@ class Region:
                     [
                         i + 1
                         for (i, v) in enumerate(
-                            (self.admin_1, self.admin_2, self.admin_3)
+                            (self.country, self.admin_2, self.admin_3)
                         )
                         if not v is None
                     ]
@@ -261,7 +261,7 @@ class Region:
             admin_3 = admin_3[0]
 
         if self.level == 1:
-            path = os.path.join('countries', country)
+            path = country
         elif self.level == 2:
             path = os.path.join(country, admin_2)
         elif self.level == 3:
