@@ -239,13 +239,33 @@ class Region:
     def cite(self) -> List[str]:
         return covid19dh.cite(self.data)  # type: ignore
 
-    def _path(self, base_path: str = "") -> str:
+    def _path(self, base_path: str = "", concretize=True) -> str:
+        country = self.country
+        admin_2 = self.admin_2
+        admin_3 = self.admin_3
+
+        if concretize:
+            country = self.data['administrative_area_level_1'].unique()
+            admin_2 = self.data['administrative_area_level_2'].unique()
+            admin_3 = self.data['administrative_area_level_3'].unique()
+
+            for var in ['country', 'admin_2', 'admin_3']:
+                if len(eval(var)) > 1:
+                    raise NotImplementedError(
+                        f"{var} is not unique, cannot create path for multi-region object\n"
+                        f"{var} = {eval(var)}"
+                    )
+
+            country = country[0]
+            admin_2 = admin_2[0]
+            admin_3 = admin_3[0]
+
         if self.level == 1:
-            path = os.path.join('countries', self.country)
+            path = os.path.join('countries', country)
         elif self.level == 2:
-            path = os.path.join(self.country, self.admin_2)
+            path = os.path.join(country, admin_2)
         elif self.level == 3:
-            path = os.path.join(self.country, self.admin_2, self.admin_3)
+            path = os.path.join(country, admin_2, admin_3)
 
         return os.path.join(base_path, path.replace(' ', '-').casefold())
 
