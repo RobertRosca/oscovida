@@ -38,7 +38,7 @@ def test_cite(mock_cache_dir):
     assert all([isinstance(line, str) for line in cite])
 
 
-def test_display_level_1():
+def test_display_level_1(mock_cache_dir):
     region = regions.Region('USA')
 
     assert (
@@ -48,7 +48,7 @@ def test_display_level_1():
     assert region.__str__() == "United States (USA)"
 
 
-def test_display_level_2():
+def test_display_level_2(mock_cache_dir):
     region = regions.Region('USA', 'California')
 
     assert (
@@ -59,7 +59,7 @@ def test_display_level_2():
     assert region.__str__() == "United States (USA): California"
 
 
-def test_display_level_3():
+def test_display_level_3(mock_cache_dir):
     region = regions.Region('USA', 'California', 'San Francisco')
 
     assert (
@@ -81,7 +81,7 @@ def test_display_level_3():
         ),
     ],
 )
-def test_data_levels(test_input, expected_output):
+def test_data_levels(test_input, expected_output, mock_cache_dir):
     country, admin_1, admin_2, admin_3, level = expected_output
 
     region = regions.Region(*test_input)
@@ -111,7 +111,7 @@ def test_data_levels(test_input, expected_output):
         ),
     ],
 )
-def test_data_wildcard(test_input, expected_output):
+def test_data_wildcard(test_input, expected_output, mock_cache_dir):
     country, admin_1, admin_2, admin_3, level = expected_output
 
     region = regions.Region(*test_input)
@@ -133,7 +133,7 @@ def test_data_wildcard(test_input, expected_output):
         assert len(region.data['administrative_area_level_3'].unique()) > 10
 
 
-def test_data_overwrite():
+def test_data_overwrite(mock_cache_dir):
     example_data = regions.Region('Germany').data
 
     #  This would normally filter the USA state-level data down to California
