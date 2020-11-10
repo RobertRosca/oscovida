@@ -93,6 +93,10 @@ pytest --verbose --cov=oscovida --nbval ./tests/plots/
 pytest --verbose --cov=oscovida --nbval ./docs/
 ```
 
+There's an optional `--static-cache` flag implemented for our tests, if you run
+pytest with this flag then it will save and re-use the same cache files, this
+means that the tests will not repeatedly download the data files each time.
+
 We aim for high coverage with our tests, so if you add in additional features
 please add in tests for them as well.
 
