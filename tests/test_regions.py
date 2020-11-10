@@ -169,3 +169,30 @@ def test_raises_invalid_level_logic(mock_cache_dir):
 
     with pytest.raises(ValueError):
         regions.Region('DEU', 'Hamburg', 'SK Hamburg', level=2)
+
+
+def test_path(mock_cache_dir):
+    region_de = regions.Region('Germany')
+    region_de_ham = regions.Region('Germany', 'Hamburg')
+    region_de_ber_rei = regions.Region('Germany', 'Berlin', 'SK Berlin Reinickendorf')
+
+    assert region_de._path() == 'germany'
+    assert region_de_ham._path() == 'germany/hamburg'
+    assert region_de_ber_rei._path() == 'germany/berlin/sk-berlin-reinickendorf'
+
+    assert region_de._path('/root/path') == '/root/path/germany'
+
+
+def test_path_concretize(mock_cache_dir):
+    region_de_ham = regions.Region('*', 'Hamburg')
+    region_de_ber_rei = regions.Region('Germany', '*', 'SK Berlin Reinickendorf')
+
+    assert region_de_ham._path() == 'germany/hamburg'
+    assert region_de_ber_rei._path() == 'germany/berlin/sk-berlin-reinickendorf'
+
+
+def test_path_concretize_raises(mock_cache_dir):
+    region_de = regions.Region('Germany', '*')
+
+    with pytest.raises(NotImplementedError):
+        region_de._path()
