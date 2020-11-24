@@ -8,8 +8,17 @@ from .regions import Region
 
 @delegates()
 class Index(Region):
-    def __init__(self, country, columns: Optional[List] = None, **kwargs) -> None:
+    def __init__(
+        self,
+        country,
+        admin_2: Optional[str] = None,
+        admin_3: Optional[str] = None,
+        columns: Optional[List] = None,
+        **kwargs,
+    ) -> None:
         kwargs['country'] = country
+        kwargs['admin_2'] = admin_2
+        kwargs['admin_3'] = admin_3
 
         super().__init__(**kwargs)
 
@@ -26,7 +35,7 @@ class Index(Region):
         start: datetime.datetime,
         end: datetime.datetime,
         columns_delta: Optional[List] = None,
-        normalize=True,
+        normalize=False,
     ):
         #  TODO: Docstring, need to clarify the distinction between start and
         #  end dates passed through to the Region class via super init and the
@@ -62,14 +71,16 @@ class Index(Region):
         )
 
         if normalize:
-            data_index['confirmed-delta-p100k'] = (
+            data_index['confirmed-delta-per100k'] = (
                 data_index['confirmed-delta'] / data_index['population'] * 100_000
             )
-            data_index['deaths-delta-p100k'] = (
+            data_index['deaths-delta-per100k'] = (
                 data_index['deaths-delta'] / data_index['population'] * 100_000
             )
 
-        return data_index
+        self.index = data_index
+
+        return self.index
 
     def diff_delta(self, delta_days: int = 7):
         #  TODO: I don't know if this is the best approach, delta here is the
