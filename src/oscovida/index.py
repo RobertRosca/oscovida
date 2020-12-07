@@ -1,9 +1,22 @@
 import datetime
-from typing import List, Optional
+import os
+from pathlib import Path
+from typing import List, Optional, Union
 
 from fastcore.all import delegates
 
 from .regions import Region
+
+DROPPED_REGIONS = {
+    'administrative_area_level_1': [
+        'Costa Atlantica',
+        'Cape Verde',
+        'Diamond Princess',
+        'Grand Princess',
+    ],
+    'administrative_area_level_2': [],
+    'administrative_area_level_3': [],
+}
 
 
 @delegates()
@@ -80,7 +93,7 @@ class Index(Region):
 
         self.index = data_index
 
-        return self.index
+        return self
 
     def diff_delta(self, delta_days: int = 7):
         #  TODO: I don't know if this is the best approach, delta here is the
@@ -90,3 +103,20 @@ class Index(Region):
         start = end - datetime.timedelta(delta_days)
 
         return self.diff_dates(start, end)
+
+    def add_links(self, wwwroot: Union[str, Path], drop=True):
+        if drop:
+            self.index.drop(
+                DROPPED_REGIONS[self.admin_area_level], axis='index', inplace=True
+            )
+
+        regions = self.index.index.to_list()
+
+        for (i, r) in enumerate(regions):
+            region = Region(r, lazy=True)
+            path = region._path(wwwroot)
+            regions[i] = f"[r]({path}" if os.path.exists(path) else r
+
+        self.index.index = regions
+
+        return self

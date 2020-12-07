@@ -2,7 +2,8 @@ import datetime
 import os
 import warnings
 from collections import namedtuple
-from typing import List, Optional
+from pathlib import Path
+from typing import List, Optional, Union
 
 import pandas as pd
 import pycountry
@@ -212,8 +213,11 @@ class Region:
         except LookupError:
             pyc_region_matches: list = pycountry.countries.search_fuzzy(region)
             if len(pyc_region_matches) > 1:
+                if region == 'Iran':
+                    return pycountry.countries.lookup('IRN')
+
                 raise LookupError(
-                    f'{region} too ambiguous, {len(pyc_region_matches)}'
+                    f'{region} too ambiguous, {len(pyc_region_matches)} '
                     f'matches. Please use a more specific region name, or use'
                     f'the ISO country code. Available matches are:'
                     f'\n{[c.name for c in pyc_region_matches]}'
@@ -239,7 +243,7 @@ class Region:
     def cite(self) -> List[str]:
         return covid19dh.cite(self.data)  # type: ignore
 
-    def _path(self, base_path: str = "", concretize=True) -> str:
+    def _path(self, base_path: Union[str, Path] = "", concretize=True) -> str:
         country = self.country
         admin_2 = self.admin_2
         admin_3 = self.admin_3
